@@ -1,0 +1,29 @@
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <% if (typeof userauth !== 'undefined') { %>
+        <i class="icon-user"></i> <%= userauth.username %>
+        <% } else { %>
+        <i class="icon-user"></i>
+        <% } %>
+    </a>
+
+    <ul class="dropdown-menu">
+        <% if (typeof userauth !== 'undefined') { %>
+        <li><a href="/user/me"><%= __('profile') %></a></li>
+        <li><a href="/user/edit"><%= __('edit_profile') %></a></li>
+        <li><a href="/user/signout"><%= __('sign_out') %></a></li>
+        <% } else { %>
+        <!--<li><a href="/user/signin"><%= __('login') %></a></li>-->
+        <li>
+            <div class="navbar-form">
+                <form method="post" action="/user/signin">
+                    <p><input type="text" name="username" class="form-control" placeholder="<%= __('username') %>"/></p>
+                    <p><input type="text" name="password" class="form-control" placeholder="<%= __('password') %>"/></p>
+                    <p><input type="submit" value="<%= __('sign_in') %>" class="btn btn-default"/></p>
+                </form>
+            </div>
+        </li>
+        <li><a href="/user/signup"><%= __('register') %></a></li>
+        <% } %>
+    </ul>
+</li>
