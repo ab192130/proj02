@@ -4,8 +4,8 @@
  * Policies are simply Express middleware functions which run **before** your controllers.
  * You can apply one or more policies to a given controller, or protect just one of its actions.
  *
- * Any policy file (e.g. `authenticated.js`) can be dropped into the `/policies` folder,
- * at which point it can be accessed below by its filename, minus the extension, (e.g. `authenticated`)
+ * Any policy file (e.g. `isAuth.js`) can be dropped into the `/policies` folder,
+ * at which point it can be accessed below by its filename, minus the extension, (e.g. `isAuth`)
  *
  * For more information on policies, check out:
  * http://sailsjs.org/#documentation
@@ -22,19 +22,19 @@ module.exports.policies = {
       '*': true,
       view: true,
       find: true,
-      me: 'authenticated',
-      edit: 'authenticated',
-      edit_get: 'authenticated',
-      delete: 'authenticated'
+      me: 'isAuth',
+      edit: 'isAuth',
+      edit_get: 'isAuth',
+      delete: 'isAuth'
   },
 
   BlogController: {
       '*': true,
-      add_get: 'authenticated',
-      add: 'authenticated',
-      edit_get: 'authenticated',
-      edit: 'authenticated',
-      delete: 'authenticated'
+      add_get: 'isAuth',
+      add: 'isAuth',
+      edit_get: 'isAuth',
+      edit: 'isAuth',
+      delete: 'isAuth'
   },
 
   AdminController: {
@@ -43,7 +43,7 @@ module.exports.policies = {
 
   CommentController: {
       '*': true,
-      add: 'authenticated'
+      add: 'isAuth'
   }
 
 
