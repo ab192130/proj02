@@ -1,2 +1,2 @@
-# proj02
-### a Sails application
+# Proj02
+### Simple web application
