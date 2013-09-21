@@ -1,0 +1,42 @@
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+
+            <div class="panel-title">
+                <h3>
+
+                    <%= blog.title %>
+
+                    <div class="pull-right">
+                    <p>
+                        <div class="btn-group">
+                            <a href="/blog/<%= blog.id %>/edit" class="btn btn-default btn-sm"><%= __('edit', '') %></a>
+                            <a href="/blog/<%= blog.id %>/delete" class="btn btn-danger btn-sm"><%= __('delete') %></a>
+                        </div>
+                    </p>
+                    </div>
+
+                </h3>
+
+                <div class="help-block" style="font-size: 11px;"><%= __('author') %>: <%= blog.author %> | <%= __('date') %>: <%= blog.createdAt %></div>
+            </div>
+
+        </div>
+
+        <div class="panel-body">
+            <% var text = blog.content %>
+            <% text = text.replace(/\r\n|\r\n/g, '<br/>') %>
+            <p><%- text %></p>
+        </div>
+    </div>
+
+    <%- partial('../comment/list') %>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form method="post" action="/comment/add/<%= blog.id %>&blog">
+                <p><textarea class="form-control" name="content" placeholder="<%= __('write_something') %>" rows="2"></textarea></p>
+                <input type="submit" class="btn btn-primary" value="<%= __('add_comment') %>" />
+            </form>
+        </div>
+    </div>

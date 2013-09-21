@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>
+            <%= user.username %>
+            <div class="pull-right">
+                <p>
+                <div class="btn-group">
+                    <a href="/user/edit" class="btn btn-default btn-sm"><%= __('edit', '') %></a>
+                </div>
+                </p>
+            </div>
+        </h1>
+
+        <div class="help-block" style="font-size: 11px;"><b><%= __('id') %>: </b><%= user.id %></div>
+
+    </div>
+    <div class="panel-body">
+        <%- partial('./info') %>
+    </div>
+</div>
+
+

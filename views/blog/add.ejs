@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+
+
+        <h3>
+
+            <%= title %>
+            <div class="pull-right">
+                <p>
+                <div class="btn-group">
+                    <!--<a href="/blog/delete-all" class="btn btn-danger btn-sm"><%= __('delete_all') %></a>-->
+                    <!--<a href="/blog/add" class="btn btn-default btn-sm"><%= __('create') %></a>-->
+                </div>
+                </p>
+            </div>
+
+        </h3>
+
+        <!--<div class="help-block" style="font-size: 11px;">New Blog post</div>-->
+    </div>
+    <div class="panel-body">
+        <form method="post">
+            <p><input type="text" name="title" placeholder="<%= __('title') %>" class="form-control"/></p>
+            <p><textarea name="content" placeholder="<%= __('text') %>" class="form-control" rows="10"></textarea></p>
+            <p><input type="submit" value="<%= __('post', '') %>" class="btn btn-primary"></p>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="panel panel-primary">
+    <div class="panel-heading"><%= __('sign_in') %></div>
+    <div class="panel-body">
+        <form method="post" action="/user/signin">
+            <p><input type="text" name="username" class="form-control" placeholder="<%= __('username') %>"/></p>
+
+            <p><input type="text" name="password" class="form-control" placeholder="<%= __('password') %>"/></p>
+
+            <p><input type="submit" value="<%= __('sign_in') %>" class="btn btn-default"/></p>
+        </form>
+    </div>
+</div>

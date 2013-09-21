@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><%= __('change_info') %></div>
+    <div class="panel-body">
+        <form method="post">
+            <p><input type="text" name="username" class="form-control" placeholder="<%= __('username') %>" value="<%- user.username %>"/></p>
+            <p><input type="text" name="email" class="form-control" placeholder="<%= __('e-mail') %>" value="<%- user.email %>"/></p>
+            <p><input type="hidden" name="target" value="info"/></p>
+            <p><input type="submit" class="btn btn-primary" value="<%= __('save_changes') %>"/></p>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><%= __('change_password') %></div>
+    <div class="panel-body">
+        <form method="post">
+            <p><input type="text" name="current" class="form-control" placeholder="<%= __('current_password') %>"/></p>
+            <p><input type="text" name="new" class="form-control" placeholder="<%= __('new_password') %>"/></p>
+            <p><input type="text" name="confirm" class="form-control" placeholder="<%= __('confirm_password') %>"/></p>
+            <p><input type="hidden" name="target" value="password"/></p>
+            <p><input type="submit" class="btn btn-primary" value="<%= __('save_changes') %>"/></p>
+        </form>
+    </div>
+</div>
+current password: <%- user.password %>

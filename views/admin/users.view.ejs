@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><%= __('edit_user') %></div>
+    <div class="panel-body">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        <label><%= __('username') %>:</label>
+                        <input type="text" name="username" value="<%= user.username %>" placeholder="<%= __('username') %>" class="form-control">
+                    </p>
+
+                    <p>
+                        <label><%= __('password') %>:</label>
+                        <input type="text" name="password" value="<%= user.password %>" placeholder="<%= __('password') %>" class="form-control">
+                    </p>
+
+                    <p>
+                        <label><%= __('e-mail') %>:</label>
+                        <input type="text" name="email" value="<%= user.email %>" placeholder="<%= __('e-mail') %>" class="form-control">
+                    </p>
+
+                    <p>
+                        <label><%= __('role') %>:</label>
+                        <input type="text" name="role" value="<%= user.role %>" placeholder="<%= __('role') %>" class="form-control">
+                    </p>
+                </div>
+
+                <div class="col-md-6">
+                    <p>
+                        <label><%= __('id') %>:</label>
+                        <input type="text" name="id" value="<%= user.id %>" placeholder="<%= __('id') %>" class="form-control" disabled>
+                    </p>
+
+                    <p>
+                        <label>Registered at:</label>
+                        <input type="text" name="createdAt" value="<%= user.createdAt %>" placeholder="Register date" class="form-control" disabled>
+                    </p>
+
+                    <p>
+                        <label>Updated at:</label>
+                        <input type="text" name="updatedAt" value="<%= user.updatedAt %>" placeholder="Update date" class="form-control" disabled>
+                    </p>
+                </div>
+            </div>
+
+            <a href="<%= user.id %>/delete" class="btn btn-danger"><%= __('delete') %></a>
+            <input type="submit"  class="btn btn-primary" value="<%= __('save_changes') %>" />
+
+        </form>
+    </div>
+</div>

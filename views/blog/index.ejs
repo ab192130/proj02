@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>
+            <%= __('blogs') %>
+            <div class="pull-right">
+                <p>
+                <div class="btn-group">
+                    <a href="/blog/add" class="btn btn-default btn-sm"><%= __('new_post', '') %></a>
+                </div>
+                </p>
+            </div>
+        </h3>
+
+        <div class="help-block" style="font-size: 11px;"><b><%= __('count') %>: </b><%= blogs.length %></div>
+
+    </div>
+
+    <div class="panel-body">
+
+        <ul class="media-list">
+            <%- partial('../blog/list') %>
+        </ul>
+
+    </div>
+</div>
+
+
+

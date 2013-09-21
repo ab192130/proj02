@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <h3>
+
+                <%= title %>
+                <div class="pull-right">
+                    <p>
+                    <div class="btn-group">
+                        <a href="/user/delete-all" class="btn btn-danger btn-sm"><%= __('delete_all') %></a>
+                    </div>
+                    </p>
+                </div>
+
+            </h3>
+
+            <div class="help-block" style="font-size: 11px;"><%= __('count') %>: <%= users.length %></div>
+        </div>
+
+    </div>
+
+    <!--<div class="panel-body"></div>-->
+
+    <%- partial('../user/list') %>
+</div>
+

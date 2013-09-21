@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>
+
+            <%= title %>
+            <div class="pull-right">
+                <p>
+                <div class="btn-group">
+                    <a href="/comment/delete-all" class="btn btn-danger btn-sm"><%= __('delete_all') %></a>
+                </div>
+                </p>
+            </div>
+
+        </h3>
+
+        <div class="help-block" style="font-size: 11px;"><%= __('count') %>: <%= comments.length %></div>
+
+
+    </div>
+    <div class="panel-body">
+        <ul class="media-list list-group">
+            <%- partial('../comment/list') %>
+        </ul>
+    </div>
+</div>

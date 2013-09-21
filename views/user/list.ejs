@@ -1,0 +1,23 @@
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <td><%= __('username') %></td>
+            <td><%= __('password') %></td>
+            <td><%= __('e-mail') %></td>
+            <td><%= __('role') %></td>
+            <td></td>
+        </tr>
+        </tbody>
+        <tbody>
+            <% _.each(users, function(user) { %>
+                <tr>
+                    <td><a href="/admin/users/<%= user.id %>"><%= user.username %></a></td>
+                    <td><%= user.password %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.role %></td>
+                    <td><a href="/admin/users/<%= user.id %>/delete"><button type="button" aria-hidden="true" class="close">&times;</button></a></td>
+                </tr>
+            <% });  %>
+        </tbody>
+    </table>
