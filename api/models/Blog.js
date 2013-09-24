@@ -16,7 +16,7 @@ module.exports = {
 //        model: 'User'
     },
 
-    privacy: 'string' // 0 = only_me, 1 = public
+    privacy: 'INTEGER' // 0 = only_me, 1 = public
   }
 
 };

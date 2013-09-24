@@ -34,19 +34,28 @@ module.exports = {
   },
 
   index: function(req, res){
+    var uid = req.session.auth;
+    var args ={where: {or: [{privacy: 1}, {author: uid}]}};
 
-    var args = {privacy: 1};
-    UserService.getOne({id: req.session.auth}, function(user){
+    if(uid){
+        UserService.getOne({id: uid}, function(user){
 
-        if(user.role == 1){
-            args = {};
-        }
+            // Istifadeci admindirse
+            if(user.role == 1){
+                args = {};
+            }
 
-        BlogService.get(args, function(blogs){
+            BlogService.get(args, function(blogs){
+                res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
+            });
+
+        });
+    } else {
+        BlogService.get({privacy: 1}, function(blogs){
             res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
         });
+    }
 
-    });
   },
 
   add_get: function(req, res){
