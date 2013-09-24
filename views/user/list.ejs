@@ -17,9 +17,9 @@
                     <td><%= user.email %></td>
                     <td><%= user.role %></td>
                     <td>
-                        <a href="/admin/users/<%= user.id %>/"><i class="icon-pencil"></i> <%= __('edit', '') %></a>
-                        <a href="/user/<%= user.username %>" target="_blank"><i class="icon-eye-open"></i> <%= __('show') %></a>
-                        <a href="/admin/users/<%= user.id %>/delete"><button type="button" aria-hidden="true" class="close">&times;</button></a>
+                        <a href="/admin/users/<%= user.id %>/delete" class="btn pull-right"><i class="icon-remove close"></i></a>
+                        <a href="/admin/users/<%= user.id %>/" class="btn pull-right"><i class="icon-pencil"></i></a>
+                        <a href="/user/<%= user.username %>" target="_blank" class="btn pull-right"><i class="icon-eye-open"></i></a>
                     </td>
                 </tr>
             <% });  %>

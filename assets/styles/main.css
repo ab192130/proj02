@@ -5,3 +5,7 @@
 .help-block{
     font-size: 11px;
 }
+
+td{
+    line-height: 35px !important;
+}
