@@ -24,7 +24,6 @@
                     <i class="icon-time"></i> <%= blog.createdAt %>
                 </div>
             </div>
-
         </div>
 
         <div class="panel-body">
@@ -36,11 +35,4 @@
 
     <%- partial('../comment/list') %>
 
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <form method="post" action="/comment/add/<%= blog.id %>&blog">
-                <p><textarea class="form-control" name="content" placeholder="<%= __('write_something') %>" rows="2"></textarea></p>
-                <input type="submit" class="btn btn-primary" value="<%= __('add_comment') %>" />
-            </form>
-        </div>
-    </div>
+    <%- partial('../comment/form.add.ejs') %>

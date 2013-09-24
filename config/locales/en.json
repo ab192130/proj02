@@ -58,5 +58,7 @@
   "description" : "Description",
   "favicon_url" : "Favicon URL",
   "all" : "All",
-  "view_site" : "View site"
+  "view_site" : "View site",
+  "public" : "Public",
+  "only_me" : "Only me"
 }
