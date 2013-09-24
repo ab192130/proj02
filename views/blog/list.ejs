@@ -30,7 +30,7 @@
             <% if(blog.content.length > 200) { %>
                 <%= blog.content.slice(0, 200) %>...
             <% } else { %>
-                <%= blog.content %>
+                <%- blog.content %>
             <% } %>
             <div class="help-block">
                 <% if (blog.privacy == 0) { %>
