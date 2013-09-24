@@ -14,7 +14,9 @@ module.exports = {
   	author: {
         type: 'string'
 //        model: 'User'
-    }
+    },
+
+    privacy: 'string' // 0 = only_me, 1 = public
   }
 
 };

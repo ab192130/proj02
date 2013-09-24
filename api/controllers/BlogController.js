@@ -11,7 +11,8 @@ var l = {
     not_found: 'not_found',
     empty_fields: 'empty_fields',
     blogs: 'blogs',
-    edit_post: 'edit_post'
+    edit_post: 'edit_post',
+    new_post: 'new_post'
 };
 
 var r = {
@@ -33,13 +34,23 @@ module.exports = {
   },
 
   index: function(req, res){
-    BlogService.get({}, function(blogs){
-        res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
+
+    var args = {privacy: 1};
+    UserService.getOne({id: req.session.auth}, function(user){
+
+        if(user.role == 1){
+            args = {};
+        }
+
+        BlogService.get(args, function(blogs){
+            res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
+        });
+
     });
   },
 
   add_get: function(req, res){
-    res.view(c + '/' + r.add, {title: res.i18n('new_post')});
+    res.view(c + '/' + r.add, {title: res.i18n(l.new_post)});
   },
 
   add: function(req, res){
@@ -48,7 +59,8 @@ module.exports = {
 
         title: req.body.title,
         content: req.body.content,
-        author: uid
+        author: uid,
+        privacy: req.body.privacy || 1
 
     };
 
@@ -96,11 +108,13 @@ module.exports = {
       var bid = req.params.id
         , title = req.body.title
         , content = req.body.content
+        , privacy = req.body.privacy
         , args = ({id: bid});
 
       BlogService.getOne(args, function(blog){
           blog.title = title;
           blog.content = content;
+          blog.privacy = privacy;
           blog.save(function(err){
               if (err) throw err;
               res.redirect('/'+ c +'/' + blog.id);
