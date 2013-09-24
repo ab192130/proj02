@@ -32,7 +32,7 @@ module.exports = {
     },
 
     users: function(req, res){
-        UserService.get({}, function(users){
+        DataService.get(User, {}, function(users){
             if(users[0]){
                 res.view(c + '/'+ r.users +'.index.ejs', {title: res.i18n(l.users), users: users});
             } else {
@@ -45,7 +45,7 @@ module.exports = {
     user_get: function(req, res){
         var args = {id: req.params.id};
 
-        UserService.getOne(args, function(user){
+        DataService.getOne(User, args, function(user){
             if (user){
                 res.view(c + '/'+ r.users +'.view.ejs', {user: user});
             } else {
@@ -57,7 +57,7 @@ module.exports = {
     user: function(req, res){
         var args = {id: req.params.id};
 
-        UserService.getOne(args, function(user){
+        DataService.getOne(User, args, function(user){
             user.username = req.body.username;
             user.password = req.body.password;
             user.email = req.body.email;
@@ -70,24 +70,58 @@ module.exports = {
         });
     },
 
-    delete: function(req, res){
-        var uid = req.session.auth;
-        CommentService.delete({author: uid}, function(){});
-
-        UserService.delete({id: req.params.id}, function(){
-            res.redirect('/'+ c +'/' + r.users);
-        });
-    },
+//    delete: function(req, res){
+//        var uid = req.session.auth;
+//
+////        CommentService.delete({author: uid}, function(){});
+//        DataService.delete(Comment, {author: uid}, function(){});
+//
+//        DataService.delete(User, {id: req.params.id}, function(){
+//            res.redirect('/'+ c +'/' + r.users);
+//        });
+//    },
 
     comments: function(req, res){
-        CommentService.get({}, function(comments){
+        DataService.get(Comment, {}, function(comments){
             res.view(c +'/comments.index.ejs', {title: 'Comments', comments: comments});
         });
     },
 
     blogs: function(req, res){
-        BlogService.get({}, function(blogs){
-            res.view(c +'/blogs.index.ejs', {title: 'Blogs', blogs: blogs});
+        DataService.get(Blog, {}, function(blogs){
+            res.view(c +'/blogs.index.ejs', {title: 'Blogs', blogs: blogs, cp: true});
+        });
+    },
+
+    blog: function(req, res){
+        var args = {id: req.params.id}
+          , method = req.method
+          , f = {
+                title: req.body.title,
+                content: req.body.content,
+                privacy: req.body.privacy
+            };
+
+
+        DataService.getOne(Blog, args, function(blog){
+                if(method == 'POST'){
+                    if (f.title && f.content) {
+                        blog.title = req.body.title;
+                        blog.content = req.body.content;
+                        blog.privacy = req.body.privacy;
+
+                        blog.save(function(err){
+                            if (err) throw err;
+                            res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog, message: 'Post saved!'});
+                        });
+                    } else {
+                        res.view(v.error, {error: res.i18n(l.empty_fields)});
+                    }
+                } else if (req.method == 'GET') {
+                    res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog});
+                } else {
+
+                }
         });
     },
 

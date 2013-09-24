@@ -49,6 +49,7 @@ module.exports.routes = {
   '/admin/users/:id/delete':  'UserController.delete',
   '/admin/comments/:id/delete':  'CommentController.delete',
   '/admin/blogs/:id/delete':  'BlogController.delete',
+  '/admin/blogs/:id':  'AdminController.blog',
 
   // User
   'get /user/signin':  'UserController.signin_get',

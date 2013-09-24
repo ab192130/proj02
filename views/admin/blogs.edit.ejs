@@ -1,3 +1,11 @@
+<% if(typeof message !== 'undefined') { %>
+
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Success!</strong> <%= message %>. <a href="/blog/<%= blog.id %>" target="_blank" class="alert-link">View Post</a>
+    </div>
+<% } %>
+
 <div class="panel panel-default">
     <div class="panel-heading">
 

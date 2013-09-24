@@ -1,0 +1,13 @@
+<form method="post">
+    <p><input type="text" name="title" placeholder="<%= __('title') %>" class="form-control" value="<%= blog.title %>"/></p>
+    <p><textarea name="content" placeholder="<%= __('text') %>" class="form-control" rows="10"><%= blog.content %></textarea></p>
+    <div class="pull-right">
+        <p>
+            <select name="privacy" class="form-control">
+                <option <% if (blog.privacy == 1) { %> selected <% } %> value="1"><%= __('public') %></option>
+                <option <% if (blog.privacy == 0) { %> selected <% } %> value="0"><%= __('only_me') %></option>
+            </select>
+        </p>
+    </div>
+    <p><input type="submit" value="<%= __('post', '') %>" class="btn btn-primary"></p>
+</form>
