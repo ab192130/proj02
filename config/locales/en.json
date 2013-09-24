@@ -60,5 +60,6 @@
   "all" : "All",
   "view_site" : "View site",
   "public" : "Public",
-  "only_me" : "Only me"
+  "only_me" : "Only me",
+  "create" : "Create"
 }
