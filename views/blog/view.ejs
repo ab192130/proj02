@@ -18,7 +18,11 @@
 
                 </h3>
 
-                <div class="help-block" style="font-size: 11px;"><%= __('by') %> <%= blog.author %> <br/> <i class="icon-time"></i> <%= blog.createdAt %></div>
+                <div class="help-block" style="font-size: 11px;">
+                    <% if(blog.privacy == 0) { %> )<i class="icon-lock"></i><% } %>
+                    <%= __('by') %> <%= blog.author %> <br/>
+                    <i class="icon-time"></i> <%= blog.createdAt %>
+                </div>
             </div>
 
         </div>
