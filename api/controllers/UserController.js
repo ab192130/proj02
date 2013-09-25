@@ -206,19 +206,21 @@ module.exports = {
   avatar: function(req, res){
       switch (req.method) {
           case 'POST':
-            console.log(req.files.image);
+            var image = req.files.image;
+            console.log(image.name);
 
-            FileService.get(req.files.image.path, function(file){
-                var name = req.files.image.name;
+            FileService.get(image.path, function(file){
+                var name = image.name;
                 var path = './assets/images/' + name;
 
 //                res.json(req.files.image.path);
                 FileService.create(path, file, function(){
-                  res.send(__dirname + path);
+//                    res.view(c + '/avatar');
+                    res.view(c + '/avatar', {image: name});
                 });
             });
 
-//            res.send(req.files);
+//            res.send(image.path);
 
           break;
 

@@ -7,8 +7,10 @@ exports.get = function(path, callback){
     });
 };
 
-exports.create = function(file, data, callback){
-    fs.writeFile(file, data, function(err){
+exports.create = function(path, data, callback){
+
+
+    fs.writeFile(path, data, function(err){
         if(err) throw err;
         callback();
     });
