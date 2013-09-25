@@ -3,12 +3,11 @@
     <div class="panel-body">
         <% if(typeof image !== 'undefined') { %>
             <img src="/images/<%= image %>" alt="<%- image %>" width="538"/>
-        <% } else { %>
-            <p>No Image</p>
         <% } %>
 
         <form method="post" enctype="multipart/form-data">
-            <p><input type="file" name="image"/></p>
+            <label for="imageInput">Select image to upload:</label>
+            <p><input id="imageInput" type="file" name="image" class="form-control"/></p>
             <p><input type="submit" value="Upload" class="btn btn-primary"/></p>
         </form>
     </div>
