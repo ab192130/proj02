@@ -15,5 +15,11 @@ module.exports.express = {
 
             next();
         });
+
+        app.use(this.bodyParser({
+            uploadDir: __dirname + '../../apps/tmp',
+            keepExtensions: true
+        }));
+//        app.use(this.limit('5mb'));
     }
 };

@@ -201,6 +201,36 @@ module.exports = {
           req.session.auth = null;
           res.redirect('/'+ c +'/'+ r.signup);
       });
+  },
+
+  avatar: function(req, res){
+      switch (req.method) {
+          case 'POST':
+            console.log(req.files.image);
+
+            FileService.get(req.files.image.path, function(file){
+                var name = req.files.image.name;
+                var path = './assets/images/' + name;
+
+//                res.json(req.files.image.path);
+                FileService.create(path, file, function(){
+                  res.send(__dirname + path);
+                });
+            });
+
+//            res.send(req.files);
+
+          break;
+
+          case 'GET':
+            res.view(c + '/avatar');
+          break;
+
+          default:
+            // ...
+          break;
+
+      }
   }
 
 

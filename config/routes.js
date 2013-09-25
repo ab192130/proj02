@@ -60,6 +60,7 @@ module.exports.routes = {
 
   'get /user/edit': 'UserController.edit_get',
   'post /user/edit': 'UserController.edit',
+  '/user/edit/picture': 'UserController.avatar',
 
   '/user/me': 'UserController.me',
   '/user/delete-all': 'UserController.deleteAll',
