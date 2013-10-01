@@ -47,7 +47,7 @@ module.exports = {
               }
           });
       } else {
-          res.redirect(c + '/me');
+          sUser.gotoProfile(res);
       }
   },
 
