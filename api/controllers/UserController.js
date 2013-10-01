@@ -64,7 +64,7 @@ module.exports = {
     var f = {username: req.body.username, password: req.body.password};
 
     if(f.username && f.password){
-        sUser.getOne({username: f.username}, function(user){
+        sData.getOne(User, {username: f.username}, function(user){
             if(user){
                 if(f.password == user.password){
                     req.session.auth = user.id;
@@ -98,7 +98,7 @@ module.exports = {
     };
 
     if(f.username && f.password){
-        sUser.getOne({username: f.username}, function(user){
+        sData.getOne(User, {username: f.username}, function(user){
             if (user){
                 res.view(v.error, {error: res.i18n(l.username_is_busy)});
             } else {
@@ -115,7 +115,7 @@ module.exports = {
   view: function(req, res){
     var name = req.params.name;
 
-    sUser.getOne({username: name}, function(user){
+    sData.getOne(User, {username: name}, function(user){
         if(user){
             res.view(c + '/', {user: user, session: req.session});
         } else {
@@ -128,7 +128,7 @@ module.exports = {
   me: function(req, res){
     var uid = req.session.auth;
 
-    sUser.getOne({id: uid}, function(user){
+    sData.getOne(User, {id: uid}, function(user){
         if(user){
             res.redirect('/'+ c +'/' + user.username);
         } else {
@@ -145,7 +145,7 @@ module.exports = {
   edit_get: function(req, res){
       var uid = req.session.auth;
 
-      sUser.getOne({id: uid}, function(user){
+      sData.getOne(User, {id: uid}, function(user){
           if (user){
               res.view(c + '/' + r.edit, {user: user});
           } else {
@@ -164,13 +164,13 @@ module.exports = {
           confpwd: req.body.confirm
       };
 
-      sUser.getOne({username: form.username}, function(user){
+      sData.getOne(User, {username: form.username}, function(user){
           if (user && user.id !== uid){
               req.error = res.i18n(l.username_is_busy);
           }
       });
 
-      sUser.getOne({id: uid}, function(user){
+      sData.getOne(User, {id: uid}, function(user){
           if(req.body.target == 'info'){
               if(!form.username){
                   req.error = res.i18n(l.username_is_not_defined);
@@ -212,14 +212,14 @@ module.exports = {
       sData.delete(Blog, {author: uid}, function(){});
       sComment.delete({author: uid}, function(){});
 
-      sUser.delete({id: uid}, function(){
+      sData.delete(User, {id: uid}, function(){
           res.redirect('back');
       });
   },
 
   deleteAll: function(req, res){
       //@TODO: except authenticated user from deleting
-      sUser.delete({}, function(){
+      sData.delete(User, {}, function(){
           req.session.auth = null;
           res.redirect('/'+ c +'/'+ r.signup);
       });

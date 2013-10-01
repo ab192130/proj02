@@ -4,7 +4,7 @@ module.exports.express = {
         app.use(function(req, res, next) {
             var uid = req.session.auth;
             if (uid){
-                sUser.getOne({id: uid}, function(user){
+                sData.getOne(User, {id: uid}, function(user){
                     res.locals.userauth = user;
                 });
             }
