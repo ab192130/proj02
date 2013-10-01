@@ -14,6 +14,8 @@ module.exports.i18n = {
   // Which locales are supported?
   locales: ['en', 'az'],
 
-  defaultLocale: 'az'
-    
+  defaultLocale: sData.getOne(Setting, {type: 'general'}, function(setting){
+
+  })
+
 };
