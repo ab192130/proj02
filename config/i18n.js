@@ -12,6 +12,8 @@
 module.exports.i18n = {
 
   // Which locales are supported?
-  locales: ['az', 'en']
+  locales: ['en', 'az'],
+
+  defaultLocale: 'az'
     
 };
