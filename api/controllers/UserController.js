@@ -70,14 +70,14 @@ module.exports = {
                     req.session.auth = user.id;
                     sUser.gotoProfile(res);
                 } else {
-                    res.view(v.error, {error: res.i18n(l.invalid_password)});
+                    sError.invalid_password(res);
                 }
             } else {
-                res.view(v.error, {error: res.i18n(l.not_found, res.i18n(c))});
+                sError.not_found(res, c);
             }
         });
     } else {
-        res.view(v.error, {error: res.i18n(l.empty_fields)});
+        sError.fill_in(res);
     }
   },
 
@@ -100,7 +100,7 @@ module.exports = {
     if(f.username && f.password){
         sData.getOne(User, {username: f.username}, function(user){
             if (user){
-                res.view(v.error, {error: res.i18n(l.username_is_busy)});
+                sError.username_is_busy(res);
             } else {
                 User.create({username: f.username, password: f.password, email: f.email, role: 0}, function(err, user){
                     req.session.auth = user.id;
@@ -119,7 +119,7 @@ module.exports = {
         if(user){
             res.view(c + '/', {user: user, session: req.session});
         } else {
-            res.view(v.error, {error: res.i18n(l.not_found, res.i18n(c))});
+            sError.not_found(res, c);
         }
 
     });
@@ -132,7 +132,7 @@ module.exports = {
         if(user){
             res.redirect('/'+ c +'/' + user.username);
         } else {
-            res.view(v.error, {error: res.i18n(l.not_found, res.i18n(c))});
+            sError.not_found(res, c);
         }
     });
   },
@@ -200,7 +200,7 @@ module.exports = {
                   res.redirect(c + '/' + r.me);
               });
           } else {
-              res.view(v.error, {error: req.error, code: 403});
+              sError.error(res, req.error, 403)
           }
       });
   },

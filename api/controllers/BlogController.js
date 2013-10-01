@@ -47,7 +47,7 @@ module.exports = {
                     res.view(c + '/' + r.view, {title: blog.title, blog: blog, comments: comments});
                 });
             } else {
-                res.view(v.error, {error: res.i18n(l.not_found, res.i18n(c))});
+                sError.not_found(res, c);
             }
         });
     } else {
@@ -93,7 +93,7 @@ module.exports = {
             res.redirect('/'+ c + '/' + blog.id);
         });
     } else {
-        res.view(v.error, {error: res.i18n(l.empty_fields)});
+        sError.fill_in(res);
     }
   },
 
@@ -109,7 +109,7 @@ module.exports = {
                   res.view(c + '/' + r.view, {title: blog.title, blog: blog, comments: comments});
               });
           } else {
-              res.view(v.error, {error: res.i18n(l.not_found, res.i18n(c))});
+              sError.not_found(res, c);
           }
       });
   },
@@ -122,7 +122,7 @@ module.exports = {
           if(blog) {
               res.view(c + '/' + r.edit, {title: res.i18n(l.edit_post), blog: blog});
           } else {
-              res.view(v.error, {error: res.i18n(l.not_found, res.i18n(c))});
+              sError.not_found(res, c);
           }
       });
   },

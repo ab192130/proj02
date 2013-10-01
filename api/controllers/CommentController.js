@@ -26,7 +26,7 @@ module.exports = {
               res.redirect('back');
           });
       } else {
-          res.view(v.error, {error: res.i18n('empty_fields')});
+          sError.fill_in(res);
       }
   },
 

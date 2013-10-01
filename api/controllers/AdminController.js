@@ -49,7 +49,7 @@ module.exports = {
             if (user){
                 res.view(c + '/'+ r.users +'.view.ejs', {user: user});
             } else {
-                res.view(v.error, {error: res.i18n(l.not_found, res.i18n(l.user))});
+                sError.not_found(res, l.user);
             }
         });
     },
@@ -115,7 +115,7 @@ module.exports = {
                             res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog, message: 'Post saved!'});
                         });
                     } else {
-                        res.view(v.error, {error: res.i18n(l.empty_fields)});
+                        sError.fill_in(res);
                     }
                 } else if (req.method == 'GET') {
                     res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog});
