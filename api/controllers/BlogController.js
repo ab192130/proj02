@@ -35,27 +35,41 @@ module.exports = {
 
   index: function(req, res){
     var uid = req.session.auth;
+    var bid = req.param('id');
     var args ={where: {or: [{privacy: 1}, {author: uid}]}};
 
-    if(uid){
-        UserService.getOne({id: uid}, function(user){
-
-            // Istifadeci admindirse
-            if(user.role == 1){
-                args = {};
+    if(bid){
+        DataService.getOne(Blog, {id: bid}, function(blog){
+            if(blog)
+            {
+                DataService.get(Comment, {parent_type: c, parent_id: bid}, function(comments){
+                    res.header('X-XSS-Protection', 0);
+                    res.view(c + '/' + r.view, {title: blog.title, blog: blog, comments: comments});
+                });
+            } else {
+                res.view(v.error, {error: res.i18n(l.not_found, res.i18n(c))});
             }
-
-            BlogService.get(args, function(blogs){
-                res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
-            });
-
         });
     } else {
-        BlogService.get({privacy: 1}, function(blogs){
-            res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
-        });
-    }
+        if(uid){
+            DataService.getOne(User, {id: uid}, function(user){
 
+                // Istifadeci admindirse
+                if(user.role == 1){
+                    args = {};
+                }
+
+                DataService.get(Blog, args, function(blogs){
+                    res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
+                });
+
+            });
+        } else {
+            DataService.get(Blog, {privacy: 1}, function(blogs){
+                res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
+            });
+        }
+    }
   },
 
   add_get: function(req, res){
