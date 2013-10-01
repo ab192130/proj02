@@ -28,7 +28,7 @@ var v = {
 module.exports = {
 
   find: function (req, res) {
-    sBlog.get({}, function(blogs){
+    sData.get(Blog, {}, function(blogs){
         res.json(blogs);
     });
   },
@@ -89,7 +89,7 @@ module.exports = {
 
     if(args.title && args.content)
     {
-        sBlog.add(args, function(blog){
+        sData.add(Blog, args, function(blog){
             res.redirect('/'+ c + '/' + blog.id);
         });
     } else {
@@ -101,7 +101,7 @@ module.exports = {
       var bid = req.params.id;
       var args = {id: bid};
 
-      sBlog.getOne(args, function(blog){
+      sData.getOne(Blog, args, function(blog){
           if(blog)
           {
               sComment.get({parent_type: c, parent_id: bid}, function(comments){
@@ -118,7 +118,7 @@ module.exports = {
       var bid = req.params.id;
       var args = {id: bid};
 
-      sBlog.getOne(args, function(blog){
+      sData.getOne(Blog, args, function(blog){
           if(blog) {
               res.view(c + '/' + r.edit, {title: res.i18n(l.edit_post), blog: blog});
           } else {
@@ -134,7 +134,7 @@ module.exports = {
         , privacy = req.body.privacy
         , args = ({id: bid});
 
-      sBlog.getOne(args, function(blog){
+      sData.getOne(Blog, args, function(blog){
           blog.title = title;
           blog.content = content;
           blog.privacy = privacy;
@@ -150,13 +150,13 @@ module.exports = {
 
       sComment.delete({parent_type: c, parent_id: args.id}, function(){});
 
-      sBlog.delete(args, function(){
+      sData.delete(Blog, args, function(){
           res.redirect('/'+ c +'/');
       });
   },
 
   deleteAll: function(req, res){
-      sBlog.delete({}, function(){
+      sData.delete(Blog, {}, function(){
           res.redirect('back');
       });
   }

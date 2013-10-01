@@ -209,7 +209,7 @@ module.exports = {
       var username = req.params.name;
       var uid = req.params.id;
 
-      sBlog.delete({author: uid}, function(){});
+      sData.delete(Blog, {author: uid}, function(){});
       sComment.delete({author: uid}, function(){});
 
       sUser.delete({id: uid}, function(){
