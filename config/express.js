@@ -4,12 +4,12 @@ module.exports.express = {
         app.use(function(req, res, next) {
             var uid = req.session.auth;
             if (uid){
-                UserService.getOne({id: uid}, function(user){
+                sUser.getOne({id: uid}, function(user){
                     res.locals.userauth = user;
                 });
             }
 
-            SettingService.getOne('general', function(setting){
+            sSetting.getOne('general', function(setting){
                 res.locals.site = setting;
             });
 

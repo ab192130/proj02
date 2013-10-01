@@ -28,7 +28,7 @@ var v = {
 module.exports = {
 
   find: function (req, res) {
-    BlogService.get({}, function(blogs){
+    sBlog.get({}, function(blogs){
         res.json(blogs);
     });
   },
@@ -39,10 +39,10 @@ module.exports = {
     var args ={where: {or: [{privacy: 1}, {author: uid}]}};
 
     if(bid){
-        DataService.getOne(Blog, {id: bid}, function(blog){
+        sData.getOne(Blog, {id: bid}, function(blog){
             if(blog)
             {
-                DataService.get(Comment, {parent_type: c, parent_id: bid}, function(comments){
+                sData.get(Comment, {parent_type: c, parent_id: bid}, function(comments){
                     res.header('X-XSS-Protection', 0);
                     res.view(c + '/' + r.view, {title: blog.title, blog: blog, comments: comments});
                 });
@@ -52,20 +52,20 @@ module.exports = {
         });
     } else {
         if(uid){
-            DataService.getOne(User, {id: uid}, function(user){
+            sData.getOne(User, {id: uid}, function(user){
 
                 // Istifadeci admindirse
                 if(user.role == 1){
                     args = {};
                 }
 
-                DataService.get(Blog, args, function(blogs){
+                sData.get(Blog, args, function(blogs){
                     res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
                 });
 
             });
         } else {
-            DataService.get(Blog, {privacy: 1}, function(blogs){
+            sData.get(Blog, {privacy: 1}, function(blogs){
                 res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
             });
         }
@@ -89,7 +89,7 @@ module.exports = {
 
     if(args.title && args.content)
     {
-        BlogService.add(args, function(blog){
+        sBlog.add(args, function(blog){
             res.redirect('/'+ c + '/' + blog.id);
         });
     } else {
@@ -101,10 +101,10 @@ module.exports = {
       var bid = req.params.id;
       var args = {id: bid};
 
-      BlogService.getOne(args, function(blog){
+      sBlog.getOne(args, function(blog){
           if(blog)
           {
-              CommentService.get({parent_type: c, parent_id: bid}, function(comments){
+              sComment.get({parent_type: c, parent_id: bid}, function(comments){
                   res.header('X-XSS-Protection', 0);
                   res.view(c + '/' + r.view, {title: blog.title, blog: blog, comments: comments});
               });
@@ -118,7 +118,7 @@ module.exports = {
       var bid = req.params.id;
       var args = {id: bid};
 
-      BlogService.getOne(args, function(blog){
+      sBlog.getOne(args, function(blog){
           if(blog) {
               res.view(c + '/' + r.edit, {title: res.i18n(l.edit_post), blog: blog});
           } else {
@@ -134,7 +134,7 @@ module.exports = {
         , privacy = req.body.privacy
         , args = ({id: bid});
 
-      BlogService.getOne(args, function(blog){
+      sBlog.getOne(args, function(blog){
           blog.title = title;
           blog.content = content;
           blog.privacy = privacy;
@@ -148,15 +148,15 @@ module.exports = {
   delete: function(req, res){
       var args = {id: req.params.id};
 
-      CommentService.delete({parent_type: c, parent_id: args.id}, function(){});
+      sComment.delete({parent_type: c, parent_id: args.id}, function(){});
 
-      BlogService.delete(args, function(){
+      sBlog.delete(args, function(){
           res.redirect('/'+ c +'/');
       });
   },
 
   deleteAll: function(req, res){
-      BlogService.delete({}, function(){
+      sBlog.delete({}, function(){
           res.redirect('back');
       });
   }

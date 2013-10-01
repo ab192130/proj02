@@ -6,7 +6,7 @@ module.exports = function (req, res, ok) {
 
     // Admin is allowed, proceed to controller
     var uid = req.session.auth;
-    UserService.getOne({id: uid}, function(user){
+    sUser.getOne({id: uid}, function(user){
         if(user.role == 1){
             return ok();
         } else {

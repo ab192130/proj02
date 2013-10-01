@@ -32,7 +32,7 @@ module.exports = {
     },
 
     users: function(req, res){
-        DataService.get(User, {}, function(users){
+        sData.get(User, {}, function(users){
             if(users[0]){
                 res.view(c + '/'+ r.users +'.index.ejs', {title: res.i18n(l.users), users: users});
             } else {
@@ -45,7 +45,7 @@ module.exports = {
     user_get: function(req, res){
         var args = {id: req.params.id};
 
-        DataService.getOne(User, args, function(user){
+        sData.getOne(User, args, function(user){
             if (user){
                 res.view(c + '/'+ r.users +'.view.ejs', {user: user});
             } else {
@@ -57,7 +57,7 @@ module.exports = {
     user: function(req, res){
         var args = {id: req.params.id};
 
-        DataService.getOne(User, args, function(user){
+        sData.getOne(User, args, function(user){
             user.username = req.body.username;
             user.password = req.body.password;
             user.email = req.body.email;
@@ -73,22 +73,22 @@ module.exports = {
 //    delete: function(req, res){
 //        var uid = req.session.auth;
 //
-////        CommentService.delete({author: uid}, function(){});
-//        DataService.delete(Comment, {author: uid}, function(){});
+////        sComment.delete({author: uid}, function(){});
+//        sData.delete(Comment, {author: uid}, function(){});
 //
-//        DataService.delete(User, {id: req.params.id}, function(){
+//        sData.delete(User, {id: req.params.id}, function(){
 //            res.redirect('/'+ c +'/' + r.users);
 //        });
 //    },
 
     comments: function(req, res){
-        DataService.get(Comment, {}, function(comments){
+        sData.get(Comment, {}, function(comments){
             res.view(c +'/comments.index.ejs', {title: 'Comments', comments: comments});
         });
     },
 
     blogs: function(req, res){
-        DataService.get(Blog, {}, function(blogs){
+        sData.get(Blog, {}, function(blogs){
             res.view(c +'/blogs.index.ejs', {title: 'Blogs', blogs: blogs, cp: true});
         });
     },
@@ -103,7 +103,7 @@ module.exports = {
             };
 
 
-        DataService.getOne(Blog, args, function(blog){
+        sData.getOne(Blog, args, function(blog){
                 if(method == 'POST'){
                     if (f.title && f.content) {
                         blog.title = req.body.title;

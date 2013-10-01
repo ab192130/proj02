@@ -15,7 +15,7 @@ module.exports = {
             favicon: req.body.favicon
         };
 
-        SettingService.getOne(f.type, function(setting){
+        sSetting.getOne(f.type, function(setting){
             if(!setting){
                 Setting.create({type: setting.type, site_name: f.site_name}, function(err, setting){
                     res.json(setting);

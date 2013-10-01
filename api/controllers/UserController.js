@@ -39,7 +39,7 @@ module.exports = {
       if (p.name) args.username = req.param('name');
 
       if (p.id || p.name){
-          DataService.getOne(User, args, function(user){
+          sData.getOne(User, args, function(user){
               if(!user){
                 res.send('not_found');
               } else{
@@ -64,11 +64,11 @@ module.exports = {
     var f = {username: req.body.username, password: req.body.password};
 
     if(f.username && f.password){
-        UserService.getOne({username: f.username}, function(user){
+        sUser.getOne({username: f.username}, function(user){
             if(user){
                 if(f.password == user.password){
                     req.session.auth = user.id;
-                    UserService.gotoProfile(res);
+                    sUser.gotoProfile(res);
                 } else {
                     res.view(v.error, {error: res.i18n(l.invalid_password)});
                 }
@@ -98,7 +98,7 @@ module.exports = {
     };
 
     if(f.username && f.password){
-        UserService.getOne({username: f.username}, function(user){
+        sUser.getOne({username: f.username}, function(user){
             if (user){
                 res.view(v.error, {error: res.i18n(l.username_is_busy)});
             } else {
@@ -115,7 +115,7 @@ module.exports = {
   view: function(req, res){
     var name = req.params.name;
 
-    UserService.getOne({username: name}, function(user){
+    sUser.getOne({username: name}, function(user){
         if(user){
             res.view(c + '/', {user: user, session: req.session});
         } else {
@@ -128,7 +128,7 @@ module.exports = {
   me: function(req, res){
     var uid = req.session.auth;
 
-    UserService.getOne({id: uid}, function(user){
+    sUser.getOne({id: uid}, function(user){
         if(user){
             res.redirect('/'+ c +'/' + user.username);
         } else {
@@ -145,7 +145,7 @@ module.exports = {
   edit_get: function(req, res){
       var uid = req.session.auth;
 
-      UserService.getOne({id: uid}, function(user){
+      sUser.getOne({id: uid}, function(user){
           if (user){
               res.view(c + '/' + r.edit, {user: user});
           } else {
@@ -164,13 +164,13 @@ module.exports = {
           confpwd: req.body.confirm
       };
 
-      UserService.getOne({username: form.username}, function(user){
+      sUser.getOne({username: form.username}, function(user){
           if (user && user.id !== uid){
               req.error = res.i18n(l.username_is_busy);
           }
       });
 
-      UserService.getOne({id: uid}, function(user){
+      sUser.getOne({id: uid}, function(user){
           if(req.body.target == 'info'){
               if(!form.username){
                   req.error = res.i18n(l.username_is_not_defined);
@@ -209,17 +209,17 @@ module.exports = {
       var username = req.params.name;
       var uid = req.params.id;
 
-      BlogService.delete({author: uid}, function(){});
-      CommentService.delete({author: uid}, function(){});
+      sBlog.delete({author: uid}, function(){});
+      sComment.delete({author: uid}, function(){});
 
-      UserService.delete({id: uid}, function(){
+      sUser.delete({id: uid}, function(){
           res.redirect('back');
       });
   },
 
   deleteAll: function(req, res){
       //@TODO: except authenticated user from deleting
-      UserService.delete({}, function(){
+      sUser.delete({}, function(){
           req.session.auth = null;
           res.redirect('/'+ c +'/'+ r.signup);
       });
@@ -231,12 +231,12 @@ module.exports = {
             var image = req.files.image;
             console.log(image.name);
 
-            FileService.get(image.path, function(file){
+            sFile.get(image.path, function(file){
                 var name = image.name;
                 var path = './assets/images/' + name;
 
 //                res.json(req.files.image.path);
-                FileService.create(path, file, function(){
+                sFile.create(path, file, function(){
 //                    res.view(c + '/avatar');
                     res.view(c + '/avatar', {image: name});
                 });

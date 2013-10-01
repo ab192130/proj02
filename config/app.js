@@ -1,4 +1,4 @@
-//var setting = require('../api/services/SettingService');
+//var setting = require('../api/services/sSetting');
 //var siteName = setting.getOne('general', 'site_name');
 
 module.exports = {
