@@ -29,6 +29,28 @@ var l = {
 
 module.exports = {
 
+  index: function(req, res) {
+      var args = {};
+      var p = {
+            id: req.param('id'),
+            name: req.param('name')
+      };
+      if (p.id) args.id = req.param('id');
+      if (p.name) args.username = req.param('name');
+
+      if (p.id || p.name){
+          DataService.getOne(User, args, function(user){
+              if(!user){
+                res.send('not_found');
+              } else{
+                  res.redirect(c + '/' + user.username);
+              }
+          });
+      } else {
+          res.redirect(c + '/me');
+      }
+  },
+
   signin_get: function(req, res){
     var uid = req.session.auth;
     if (!uid){
