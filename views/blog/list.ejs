@@ -6,7 +6,7 @@
     <!---->
     <!--<% } %>-->
 
-    <% if(typeof cp !== 'undefined') { var link = '/admin/blogs/' + blog.id; } else { var link = '/blog/' + blog.id;} %>
+    <% if(typeof cp !== 'undefined') { var link = '/admin/blogs/' + blog.id; } else { var link = '/blog?id=' + blog.id;} %>
 
     <!--<% if (typeof cpref == true) { %>/admin/blogs/<%= blog.id %><% } else { %>/blog/<%= blog.id %><% } %>-->
 
