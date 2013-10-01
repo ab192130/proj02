@@ -16,6 +16,6 @@ module.exports.i18n = {
 
   defaultLocale: sData.getOne(Setting, {type: 'general'}, function(setting){
 
-  })
+  }),
 
 };
