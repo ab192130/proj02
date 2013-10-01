@@ -104,7 +104,7 @@ module.exports = {
       sData.getOne(Blog, args, function(blog){
           if(blog)
           {
-              sComment.get({parent_type: c, parent_id: bid}, function(comments){
+              sData.get(Comment, {parent_type: c, parent_id: bid}, function(comments){
                   res.header('X-XSS-Protection', 0);
                   res.view(c + '/' + r.view, {title: blog.title, blog: blog, comments: comments});
               });
@@ -148,7 +148,7 @@ module.exports = {
   delete: function(req, res){
       var args = {id: req.params.id};
 
-      sComment.delete({parent_type: c, parent_id: args.id}, function(){});
+      sData.delete(Comment, {parent_type: c, parent_id: args.id}, function(){});
 
       sData.delete(Blog, args, function(){
           res.redirect('/'+ c +'/');

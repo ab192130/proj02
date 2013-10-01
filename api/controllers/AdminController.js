@@ -73,7 +73,7 @@ module.exports = {
 //    delete: function(req, res){
 //        var uid = req.session.auth;
 //
-////        sComment.delete({author: uid}, function(){});
+////        sData.delete(Comment, {author: uid}, function(){});
 //        sData.delete(Comment, {author: uid}, function(){});
 //
 //        sData.delete(User, {id: req.params.id}, function(){

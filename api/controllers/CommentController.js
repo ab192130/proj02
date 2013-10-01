@@ -22,7 +22,7 @@ module.exports = {
 //      res.json(a);
 
       if(a.content && a.parent_type && a.parent_id){
-          sComment.add(a, function(comment){
+          sData.add(Comment, a, function(comment){
               res.redirect('back');
           });
       } else {
@@ -31,13 +31,13 @@ module.exports = {
   },
 
   delete: function(req, res) {
-      sComment.delete({id: req.params.id}, function(){
+      sData.delete(Comment, {id: req.params.id}, function(){
           res.redirect('back');
       });
   },
 
   deleteAll: function(req, res) {
-      sComment.delete({}, function(){
+      sData.delete(Comment, {}, function(){
           res.redirect('back');
       });
   }

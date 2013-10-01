@@ -210,7 +210,7 @@ module.exports = {
       var uid = req.params.id;
 
       sData.delete(Blog, {author: uid}, function(){});
-      sComment.delete({author: uid}, function(){});
+      sData.delete(Comment, {author: uid}, function(){});
 
       sData.delete(User, {id: uid}, function(){
           res.redirect('back');
