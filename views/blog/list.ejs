@@ -22,7 +22,9 @@
             <span style="font-size: 11px; color: #737373;"><%= __('by') %> <%= blog.author %></span>
 
             <div class="pull-right" style="font-size: 11px;">
+                <% if (typeof userauth !== 'undefined') { %>
                 <a href="/blog/<%= blog.id %>/delete"><button type="button" aria-hidden="true" class="close">&times;</button></a>
+                <% } %>
             </div>
         </div>
 

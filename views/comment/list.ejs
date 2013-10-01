@@ -7,7 +7,9 @@
         <div class="media-heading"><a href="/user?id=<%= comment.author %>"><%= comment.author %></a>
 
             <div class="pull-right" style="font-size: 11px;">
+                <% if (typeof userauth !== 'undefined') { %>
                 <a href="/comment/<%= comment.id %>/delete"><button type="button" aria-hidden="true" class="close">&times;</button></a>
+                <% } %>
             </div>
 
         </div>
