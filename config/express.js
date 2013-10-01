@@ -22,4 +22,7 @@ module.exports.express = {
         }));
 //        app.use(this.limit('5mb'));
     }
+//
+//    bodyParser: require ('file-parser'),
+//    retryBodyParserWithJSON: false
 };

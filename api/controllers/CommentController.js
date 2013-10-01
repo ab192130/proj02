@@ -12,6 +12,7 @@ var v = {
 module.exports = {
 
   add: function (req, res) {
+
       var a = {
           content: req.body.content,
           author: req.session.auth,

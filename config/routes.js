@@ -87,7 +87,8 @@ module.exports.routes = {
   '/comment/delete-all': 'CommentController.deleteAll',
 
   // Setting
-  'post /setting/add': 'SettingController.add'
+  'post /setting/add': 'SettingController.add',
+  'post /upload/image': 'ImageController.upload',
 
   /*
   // But what if you want your home page to display
