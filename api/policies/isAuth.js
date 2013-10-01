@@ -10,8 +10,6 @@ module.exports = function (req, res, ok) {
 
   // User is not allowed
   else {
-//    return res.send("You are not permitted to perform this action.", 403);
-    res.view('error', {error: res.i18n('access_denied'), code: 403});
-
+    sError.access_denied(res);
   }
 };

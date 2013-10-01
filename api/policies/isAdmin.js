@@ -10,7 +10,7 @@ module.exports = function (req, res, ok) {
         if(user.role == 1){
             return ok();
         } else {
-            res.view('error', {error: res.i18n('access_denied'), code: 403});
+            sError.access_denied(res);
         }
     });
 };
