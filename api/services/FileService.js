@@ -5,6 +5,7 @@ var fs = require('fs');
 //form.uploadDir = process.env.TMP || process.env.TMPDIR || process.env.TEMP || '/tmp' || process.cwd();
 //form.keepExtensions = true;
 
+
 exports.get = function(path, callback){
     fs.readFile(path, function(err, data){
         if (err) throw err;
@@ -19,9 +20,12 @@ exports.create = function(path, data, callback){
     });
 };
 
-exports.move = function(oldpath, newpath, callback){
-    fs.rename(oldpath, newpath, function(err){
-        if(err) throw err;
-        callback();
+exports.move = function(source, destination, callback){
+    fs.rename(source, destination, function(err){
+        if (err) throw err;
+        fs.unlink(source, function(err) {
+            if (err) throw err;
+            callback();
+        });
     });
 };

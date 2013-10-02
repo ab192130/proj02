@@ -1,4 +1,5 @@
-// Put this in `config/express.js`
+//var sailsExpress = require('./node_modules/sails/node_modules/express');
+
 module.exports.express = {
     customMiddleware: function (app) {
         app.use(function(req, res, next) {
@@ -16,13 +17,13 @@ module.exports.express = {
             next();
         });
 
-        app.use(this.bodyParser({
-            uploadDir: __dirname + '../../apps/tmp',
-            keepExtensions: true
-        }));
+//        app.use(this.bodyParser({
+//            uploadDir: __dirname + '../../apps/tmp',
+//            keepExtensions: true
+//        }));
 //        app.use(this.limit('5mb'));
     }
 //
-//    bodyParser: require ('file-parser'),
+//    bodyParser: {uploadDir: './assets/images/', keepExtensions: true},
 //    retryBodyParserWithJSON: false
 };
