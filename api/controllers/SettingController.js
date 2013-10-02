@@ -12,8 +12,8 @@ module.exports = {
             type: req.body.type,
             site_name: req.body.site_name,
             description: req.body.description,
-            favicon: req.body.favicon,
-            language: req.body.language
+            favicon: req.body.favicon
+//            language: req.body.language
         };
 
         sSetting.getOne(f.type, function(setting){
@@ -23,8 +23,8 @@ module.exports = {
                     type: setting.type,
                     site_name: f.site_name,
                     description: f.description,
-                    favicon: f.favicon,
-                    language: f.language
+                    favicon: f.favicon
+//                    language: f.language
 
                 }, function(err, setting){
                     res.json(setting);
@@ -33,7 +33,7 @@ module.exports = {
                 setting.site_name = f.site_name;
                 setting.description = f.description;
                 setting.favicon = f.favicon;
-                setting.language = f.language;
+//                setting.language = f.language;
                 setting.save(function(err){
                     if (err) throw err;
                     res.json(setting);
