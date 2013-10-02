@@ -8,10 +8,18 @@ exports.get = function(path, callback){
 };
 
 exports.create = function(path, data, callback){
-
-
     fs.writeFile(path, data, function(err){
         if(err) throw err;
         callback();
+    });
+};
+
+exports.move = function(source, destination, callback){
+    fs.rename(source, destination, function(err){
+        if (err) throw err;
+        fs.unlink(source, function(err) {
+            if (err) throw err;
+            callback();
+        });
     });
 };
