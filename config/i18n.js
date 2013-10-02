@@ -15,7 +15,7 @@
 //   // ...
 //});
 
-// TODO: add setting to change default language from interface
+// TODO: add setting to change default language from interface.
 
 module.exports.i18n = {
 
