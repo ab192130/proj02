@@ -15,13 +15,11 @@ module.exports.express = {
                 res.setLocale(setting.language);
             });
 
-
-
             next();
         });
 
         app.use(express.bodyParser({
-            uploadDir: __dirname + '../../apps/tmp',
+            uploadDir: __dirname + '/test/',
             keepExtensions: true
         }));
         app.use(express.limit('5mb'));
