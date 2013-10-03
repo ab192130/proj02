@@ -22,4 +22,7 @@ module.exports.i18n = {
   // Which locales are supported?
   locales: ['en', 'az'],
 
+  // sets a custom cookie name to parse locale settings from
+  cookie: 'language',
+
 };
