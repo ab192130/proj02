@@ -44,8 +44,13 @@ module.exports = {
             if(blog)
             {
                 if (a == 'edit') {
-//                    res.send('done');
                     res.view(c + '/' + r.edit, {title: res.i18n(l.edit_post), blog: blog});
+                } else if (a == 'delete'){
+                    sData.delete(Comment, {parent_type: c, parent_id: bid}, function(){});
+
+                    sData.delete(Blog, bid, function(){
+                        res.redirect('/'+ c +'/');
+                    });
                 } else {
                     sData.get(Comment, {parent_type: c, parent_id: bid}, function(comments){
                         res.header('X-XSS-Protection', 0);

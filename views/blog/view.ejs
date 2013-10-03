@@ -12,7 +12,7 @@
                         <div class="btn-group">
                             <% if (typeof userauth !== 'undefined') { %>
                             <a href="/blog?id=<%= blog.id %>&a=edit" class="btn btn-default btn-sm"><i class="icon-pencil"></i></a>
-                            <a href="/blog/<%= blog.id %>/delete" class="btn btn-danger btn-sm"><i class="icon-remove"></i></a>
+                            <a href="/blog?id=<%= blog.id %>&a=delete" class="btn btn-danger btn-sm"><i class="icon-remove"></i></a>
                             <% } %>
                         </div>
                     </p>
