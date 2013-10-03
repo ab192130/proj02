@@ -92,7 +92,7 @@ module.exports = {
 
   signup: function(req, res){
     var f = {
-        username: req.body.username,
+        username: req.body.username.toLowerCase(),
         password: req.body.password,
         email: req.body.email
     };
