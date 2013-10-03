@@ -16,34 +16,34 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access) 
-  '*': [true, 'Locale'],
+  '*': true,
 
   UserController: {
-//      '*': true,
-//      view: true,
-//      find: true,
-      me: ['Locale', 'isAuth'],
-      edit: ['Locale', 'isAuth'],
-      edit_get: ['Locale', 'isAuth'],
-      delete: ['Locale', 'isAuth']
+      '*': true,
+      view: true,
+      find: true,
+      me: 'isAuth',
+      edit: 'isAuth',
+      edit_get: 'isAuth',
+      delete: 'isAuth'
   },
 
   BlogController: {
-//      '*': true,
-      add_get: ['Locale', 'isAuth'],
-      add: ['Locale', 'isAuth'],
-      edit_get: ['Locale', 'isAuth'],
-      edit: ['Locale', 'isAuth'],
-      delete: ['Locale', 'isAuth']
+      '*': true,
+      add_get: 'isAuth',
+      add: 'isAuth',
+      edit_get: 'isAuth',
+      edit: 'isAuth',
+      delete: 'isAuth'
   },
 
   AdminController: {
-      '*': ['isAuth', 'isAdmin', 'Locale']
+      '*': ['isAuth', 'isAdmin']
   },
 
   CommentController: {
-//      '*': true,
-      add: ['Locale', 'isAuth']
+      '*': true,
+      add: 'isAuth'
   }
 
 

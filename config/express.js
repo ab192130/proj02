@@ -11,7 +11,10 @@ module.exports.express = {
 
             sSetting.getOne('general', function(setting){
                 res.locals.site = setting;
+                res.setLocale(setting.language);
             });
+
+
 
             next();
         });
