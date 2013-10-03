@@ -1,3 +1,4 @@
+var express = require('express');
 // Put this in `config/express.js`
 module.exports.express = {
     customMiddleware: function (app) {
@@ -19,10 +20,10 @@ module.exports.express = {
             next();
         });
 
-        app.use(this.bodyParser({
+        app.use(express.bodyParser({
             uploadDir: __dirname + '../../apps/tmp',
             keepExtensions: true
         }));
-//        app.use(this.limit('5mb'));
+        app.use(express.limit('5mb'));
     }
 };
