@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" action="/blog/<%= blog.id %>/edit">
     <p><input type="text" name="title" placeholder="<%= __('title') %>" class="form-control" value="<%= blog.title %>"/></p>
     <p><textarea name="content" placeholder="<%= __('text') %>" class="form-control" rows="10"><%= blog.content %></textarea></p>
     <div class="pull-right">

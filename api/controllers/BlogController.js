@@ -35,6 +35,7 @@ module.exports = {
 
   index: function(req, res){
     var uid = req.session.auth;
+    var a = req.param('a');
     var bid = req.param('id');
     var args ={where: {or: [{privacy: 1}, {author: uid}]}};
 
@@ -42,10 +43,15 @@ module.exports = {
         sData.getOne(Blog, {id: bid}, function(blog){
             if(blog)
             {
-                sData.get(Comment, {parent_type: c, parent_id: bid}, function(comments){
-                    res.header('X-XSS-Protection', 0);
-                    res.view(c + '/' + r.view, {title: blog.title, blog: blog, comments: comments});
-                });
+                if (a == 'edit') {
+//                    res.send('done');
+                    res.view(c + '/' + r.edit, {title: res.i18n(l.edit_post), blog: blog});
+                } else {
+                    sData.get(Comment, {parent_type: c, parent_id: bid}, function(comments){
+                        res.header('X-XSS-Protection', 0);
+                        res.view(c + '/' + r.view, {title: blog.title, blog: blog, comments: comments});
+                    });
+                }
             } else {
                 sError.not_found(res, c);
             }
