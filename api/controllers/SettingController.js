@@ -36,7 +36,7 @@ module.exports = {
                 setting.language = f.language;
                 setting.save(function(err){
                     if (err) throw err;
-                    res.json(setting);
+                    res.redirect('back');
                 });
             }
         });
