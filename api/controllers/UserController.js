@@ -231,16 +231,22 @@ module.exports = {
             var image = req.files.image;
             console.log(image.name);
 
-            sFile.get(image.path, function(file){
+//            sFile.get(image.path, function(file){
                 var name = image.name;
-                var path = './assets/images/' + name;
+                var source = image.path;
+                var destination = './assets/images/' + name;
 
 //                res.json(req.files.image.path);
-                sFile.create(path, file, function(){
+                if(image.size !== 0){
+                    sFile.move(source, destination, function(){
 //                    res.view(c + '/avatar');
-                    res.view(c + '/avatar', {image: name});
-                });
-            });
+                        res.view(c + '/avatar', {image: name});
+                    });
+                } else {
+                    res.send('select image');
+                }
+
+//            });
 
 //            res.send(image.path);
 
