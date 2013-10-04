@@ -7,6 +7,7 @@
     <!--<% } %>-->
 
     <% if(typeof cp !== 'undefined') { var link = '/admin/blogs/' + blog.id; } else { var link = '/blog?id=' + blog.id;} %>
+    <% if(blog.author == userauth.id || userauth.role == 1) { var canDelete = true; } else { canDelete = false; } %>
 
     <!--<% if (typeof cpref == true) { %>/admin/blogs/<%= blog.id %><% } else { %>/blog/<%= blog.id %><% } %>-->
 
@@ -22,7 +23,7 @@
             <span style="font-size: 11px; color: #737373;"><%= __('by') %> <%= blog.author %></span>
 
             <div class="pull-right" style="font-size: 11px;">
-                <% if (typeof userauth !== 'undefined') { %>
+                <% if (typeof userauth !== 'undefined' && canDelete) { %>
                 <a href="/blog/<%= blog.id %>/delete"><button type="button" aria-hidden="true" class="close">&times;</button></a>
                 <% } %>
             </div>
