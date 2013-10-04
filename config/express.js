@@ -7,6 +7,8 @@ module.exports.express = {
             if (uid){
                 sData.getOne(User, {id: uid}, function(user){
                     res.locals.userauth = user;
+                    req.userauth = user;
+                    req.session.data = user;
                 });
             }
 

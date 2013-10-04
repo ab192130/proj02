@@ -138,7 +138,7 @@ module.exports = {
   },
 
   signout: function(req, res){
-      req.session.auth = null;
+      sUser.signOut(req);
       res.redirect('/');
   },
 

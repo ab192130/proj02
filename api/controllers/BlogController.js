@@ -34,7 +34,8 @@ module.exports = {
   },
 
   index: function(req, res){
-    var uid = req.session.auth;
+    var user = sUser.getCurrent(req);
+    var uid = user.id;
     var a = req.param('a');
     var bid = req.param('id');
     var args ={where: {or: [{privacy: 1}, {author: uid}]}};
@@ -44,13 +45,21 @@ module.exports = {
             if(blog)
             {
                 if (a == 'edit') {
-                    res.view(c + '/' + r.edit, {title: res.i18n(l.edit_post), blog: blog});
+                    if(sUser.canChange(user, blog)){
+                        res.view(c + '/' + r.edit, {title: res.i18n(l.edit_post), blog: blog});
+                    } else {
+                        sError.access_denied(res);
+                    }
                 } else if (a == 'delete'){
-                    sData.delete(Comment, {parent_type: c, parent_id: bid}, function(){});
+                    if(sUser.canChange(user, blog)){
+                        sData.delete(Comment, {parent_type: c, parent_id: bid}, function(){});
 
-                    sData.delete(Blog, bid, function(){
-                        res.redirect('/'+ c +'/');
-                    });
+                        sData.delete(Blog, bid, function(){
+                            res.redirect('/'+ c +'/');
+                        });
+                    } else {
+                        sError.access_denied(res);
+                    }
                 } else {
                     sData.get(Comment, {parent_type: c, parent_id: bid}, function(comments){
                         res.header('X-XSS-Protection', 0);
@@ -63,8 +72,6 @@ module.exports = {
         });
     } else {
         if(uid){
-            sData.getOne(User, {id: uid}, function(user){
-
                 // Istifadeci admindirse
                 if(user.role == 1){
                     args = {};
@@ -73,14 +80,13 @@ module.exports = {
                 sData.get(Blog, args, function(blogs){
                     res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
                 });
-
-            });
         } else {
             sData.get(Blog, {privacy: 1}, function(blogs){
                 res.view(c + '/', {title: res.i18n(l.blogs), blogs: blogs});
             });
         }
     }
+
   },
 
   add_get: function(req, res){
