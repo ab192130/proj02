@@ -1,4 +1,6 @@
-<form method="post" action="/blog/<%= blog.id %>/edit">
+<% if(typeof cp !== 'undefined') { var link = ''; } else { var link = '/blog/'+ blog.id +'/edit'} %>
+
+<form method="post" action="<%= link %>">
     <p><input type="text" name="title" placeholder="<%= __('title') %>" class="form-control" value="<%= blog.title %>"/></p>
     <p><textarea name="content" placeholder="<%= __('text') %>" class="form-control" rows="10"><%= blog.content %></textarea></p>
     <div class="pull-right">

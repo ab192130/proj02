@@ -113,13 +113,13 @@ module.exports = {
 
                         blog.save(function(err){
                             if (err) throw err;
-                            res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog, message: 'Post saved!'});
+                            res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog, message: 'Post saved!', cp:true});
                         });
                     } else {
                         sError.fill_in(res);
                     }
                 } else if (req.method == 'GET') {
-                    res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog});
+                    res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog, cp:true});
                 } else {
 
                 }
