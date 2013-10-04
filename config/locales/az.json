@@ -45,5 +45,7 @@
     "change_password": "Şifrəni dəyiş",
     "current_password": "Cari şifrə",
     "new_password": "Yeni şifrə",
-    "confirm_password": "Təsdiq şifrəsi"
+    "confirm_password": "Təsdiq şifrəsi",
+    "all_settings": "Bütün kökləmələr",
+    "count" : "Say"
 }

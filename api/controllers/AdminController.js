@@ -84,13 +84,13 @@ module.exports = {
 
     comments: function(req, res){
         sData.get(Comment, {}, function(comments){
-            res.view(c +'/comments.index.ejs', {title: 'Comments', comments: comments});
+            res.view(c +'/comments.index.ejs', {title: res.i18n('comments'), comments: comments});
         });
     },
 
     blogs: function(req, res){
         sData.get(Blog, {}, function(blogs){
-            res.view(c +'/blogs.index.ejs', {title: 'Blogs', blogs: blogs, cp: true});
+            res.view(c +'/blogs.index.ejs', {title: res.i18n('blogs'), blogs: blogs, cp: true});
         });
     },
 
@@ -127,6 +127,6 @@ module.exports = {
     },
 
     general: function(req, res){
-        res.view(c +'/general.index.ejs', {title: 'General'});
+        res.view(c +'/general.index.ejs', {title: res.i18n('general')});
     }
 };

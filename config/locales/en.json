@@ -62,6 +62,7 @@
   "public" : "Public",
   "only_me" : "Only me",
   "create" : "Create",
-  "show" : "Show"
+  "show" : "Show",
+  "all_settings": "All settings"
 
 }
