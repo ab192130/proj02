@@ -1,5 +1,7 @@
 
-    <% if(blog.author == userauth.id || userauth.role == 1) { var canChange = true; } else { canChange = false; } %>
+    <% if (typeof userauth !== 'undefined') { %>
+        <% if(blog.author == userauth.id || userauth.role == 1) { var canChange = true; } else { canChange = false; } %>
+    <% } %>
 
     <div class="panel panel-default">
         <div class="panel-heading">

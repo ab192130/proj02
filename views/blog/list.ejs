@@ -7,7 +7,9 @@
     <!--<% } %>-->
 
     <% if(typeof cp !== 'undefined') { var link = '/admin/blogs/' + blog.id; } else { var link = '/blog?id=' + blog.id;} %>
-    <% if(blog.author == userauth.id || userauth.role == 1) { var canDelete = true; } else { canDelete = false; } %>
+    <% if (typeof userauth !== 'undefined') { %>
+        <% if(blog.author == userauth.id || userauth.role == 1) { var canDelete = true; } else { canDelete = false; } %>
+    <% } %>
 
     <!--<% if (typeof cpref == true) { %>/admin/blogs/<%= blog.id %><% } else { %>/blog/<%= blog.id %><% } %>-->
 

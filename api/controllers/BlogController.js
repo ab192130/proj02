@@ -35,7 +35,7 @@ module.exports = {
 
   index: function(req, res){
     var user = sUser.getCurrent(req);
-    var uid = user.id;
+    if(user) var uid = user.id;
     var a = req.param('a');
     var bid = req.param('id');
     var args ={where: {or: [{privacy: 1}, {author: uid}]}};

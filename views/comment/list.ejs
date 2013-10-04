@@ -1,7 +1,10 @@
 <ul class="media-list list-group">
     <% _.each(comments, function(comment) { %>
 
-    <% if(comment.author == userauth.id || userauth.role == 1) { var canDelete = true; } else { canDelete = false; } %>
+    <% if (typeof userauth !== 'undefined') { %>
+        <% if(comment.author == userauth.id || userauth.role == 1) { var canDelete = true; } else { canDelete = false; } %>
+    <% } %>
+
 
     <li class="media list-group-item">
         <a href="#" class="pull-left">
