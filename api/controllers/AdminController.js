@@ -97,24 +97,35 @@ module.exports = {
     },
 
     blogs: function(req, res){
-        sData.get(Blog, {}, function(blogs){
-            res.view(c +'/blogs.index.ejs', {title: res.i18n('blogs'), blogs: blogs, cp: true});
-        });
-    },
+        var bid = req.param('id');
+        switch (req.method){
+            case 'GET':
 
-    blog: function(req, res){
-        var args = {id: req.params.id}
-          , method = req.method
-          , f = {
-                title: req.body.title,
-                content: req.body.content,
-                privacy: req.body.privacy
-            };
+                if (bid){
+                    sData.getOne(Blog, {id: bid}, function(blog){
+                        if(blog){
+                            res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog, cp:true});
+                        } else {
+                            sError.not_found(res, 'blog');
+                        }
+                    });
+                } else {
+                    sData.get(Blog, {}, function(blogs){
+                        res.view(c +'/blogs.index.ejs', {title: res.i18n('blogs'), blogs: blogs, cp: true});
+                    });
+                }
 
+            break;
 
-        sData.getOne(Blog, args, function(blog){
-                if(method == 'POST'){
-                    if (f.title && f.content) {
+            case 'POST':
+                var f = {
+                        title: req.body.title,
+                        content: req.body.content,
+                        privacy: req.body.privacy
+                    };
+
+                sData.getOne(Blog, {id: bid}, function(blog){
+                    if(f.title && f.content){
                         blog.title = req.body.title;
                         blog.content = req.body.content;
                         blog.privacy = req.body.privacy;
@@ -126,13 +137,47 @@ module.exports = {
                     } else {
                         sError.fill_in(res);
                     }
-                } else if (req.method == 'GET') {
-                    res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog, cp:true});
-                } else {
 
-                }
-        });
+                });
+            break;
+
+            default :
+                res.send('other');
+            break;
+        }
     },
+
+//    blog: function(req, res){
+//        var args = {id: req.params.id}
+//          , method = req.method
+//          , f = {
+//                title: req.body.title,
+//                content: req.body.content,
+//                privacy: req.body.privacy
+//            };
+//
+//
+//        sData.getOne(Blog, args, function(blog){
+//                if(method == 'POST'){
+//                    if (f.title && f.content) {
+//                        blog.title = req.body.title;
+//                        blog.content = req.body.content;
+//                        blog.privacy = req.body.privacy;
+//
+//                        blog.save(function(err){
+//                            if (err) throw err;
+//                            res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog, message: 'Post saved!', cp:true});
+//                        });
+//                    } else {
+//                        sError.fill_in(res);
+//                    }
+//                } else if (req.method == 'GET') {
+//                    res.view(c + '/blogs.edit.ejs', {title: res.i18n('edit_post'), blog: blog, cp:true});
+//                } else {
+//
+//                }
+//        });
+//    },
 
     general: function(req, res){
         res.view(c +'/general.index.ejs', {title: res.i18n('general')});
