@@ -10,19 +10,28 @@ module.exports = {
   index: function(req, res){
       var name = req.params.module;
       sData.getOne(Module, {name: name}, function(mdl){
-            var string = mdl.name;
-            var string = string.charAt(0).toUpperCase() + string.slice(1);
-            var string = 'c' + string;
-            var myobj = eval(string);
+            if(mdl){
+                var string = mdl.name;
+                var string = string.charAt(0).toUpperCase() + string.slice(1);
+                var string = 'c' + string;
+                var myobj = eval(string);
 
 //            res.send(myobj);
-          switch (name){
-              case mdl.name:
-                myobj.index(req, res);
+                switch (name){
+                    case mdl.name:
+                        myobj.index(req, res);
 //                  res.send(mdl['c' + name]);
-              break;
+                        break;
 
-          }
+                    default:
+                        //...
+                    break;
+
+                }
+            } else {
+                res.send('unknown');
+            }
+
       });
 
 //      switch (req.params.module){
