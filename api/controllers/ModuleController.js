@@ -11,17 +11,16 @@ module.exports = {
       var name = req.params.module;
       sData.getOne(Module, {name: name}, function(mdl){
             if(mdl){
-                var string = mdl.name;
-                var string = string.charAt(0).toUpperCase() + string.slice(1);
-                var string = 'c' + string;
-                var myobj = eval(string);
+                var string = mdl.name
+                  , string = string.charAt(0).toUpperCase() + string.slice(1)
+                  , string = 'c' + string
+                  , myobj = eval(string);
 
 //            res.send(myobj);
                 switch (name){
                     case mdl.name:
                         myobj.index(req, res);
-//                  res.send(mdl['c' + name]);
-                        break;
+                    break;
 
                     default:
                         //...
