@@ -7,11 +7,9 @@
 
 module.exports = {
 
-  /* e.g.
-  sayHello: function (req, res) {
-    res.send('hello world!');
+  index: function(req, res){
+    res.view('home');
   }
-  */
   
 
 };
