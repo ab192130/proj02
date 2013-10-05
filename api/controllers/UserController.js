@@ -27,7 +27,7 @@ var l = {
     passwords_dont_match: 'passwords_dont_match'
 };
 
-module.exports = {
+module.exports = cUser = {
 
   index: function(req, res) {
       var args = {};

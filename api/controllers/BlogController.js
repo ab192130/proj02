@@ -25,7 +25,7 @@ var v = {
     error: 'error'
 };
 
-module.exports = {
+module.exports = cBlog = {
 
   find: function (req, res) {
     sData.get(Blog, {}, function(blogs){

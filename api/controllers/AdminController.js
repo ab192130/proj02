@@ -25,7 +25,7 @@ var c = 'admin'
         user: 'user'
     };
 
-module.exports = {
+module.exports = cAdmin = {
 
     index: function(req, res){
 
