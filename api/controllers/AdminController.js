@@ -33,14 +33,25 @@ module.exports = {
     },
 
     users: function(req, res){
-        sData.get(User, {}, function(users){
-            if(users[0]){
-                res.view(c + '/'+ r.users +'.index.ejs', {title: res.i18n(l.users), users: users});
-            } else {
-                req.session.auth = null;
-                res.redirect('/'+ r.user +'/'+ r.signup);
-            }
-        });
+        var uid = req.param('id');
+        if(uid) {
+            sData.getOne(User, {id: uid}, function(user){
+                if (user){
+                    res.view(c + '/'+ r.users +'.view.ejs', {user: user});
+                } else {
+                    sError.not_found(res, l.user);
+                }
+            });
+        } else {
+            sData.get(User, {}, function(users){
+                if(users[0]){
+                    res.view(c + '/'+ r.users +'.index.ejs', {title: res.i18n(l.users), users: users});
+                } else {
+                    req.session.auth = null;
+                    res.redirect('/'+ r.user +'/'+ r.signup);
+                }
+            });
+        }
     },
 
     user_get: function(req, res){
@@ -128,5 +139,16 @@ module.exports = {
 
     general: function(req, res){
         res.view(c +'/general.index.ejs', {title: res.i18n('general')});
+    },
+
+    makeAdmin: function(req, res){
+        var username = req.params.name;
+        sData.getOne(User, {username: username}, function(user){
+            user.role = 1;
+            user.save(function(err){
+                res.json(user);
+            });
+
+        })
     }
 };

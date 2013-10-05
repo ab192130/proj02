@@ -12,13 +12,13 @@
         <tbody>
             <% _.each(users, function(user) { %>
                 <tr>
-                    <td><a href="/admin/users/<%= user.id %>"><%= user.username %></a></td>
+                    <td><a href="/admin/users?id=<%= user.id %>"><%= user.username %></a></td>
                     <td><%= user.password %></td>
                     <td><%= user.email %></td>
                     <td><%= user.role %></td>
                     <td>
                         <a href="/admin/users/<%= user.id %>/delete" class="btn pull-right"><i class="icon-remove close"></i></a>
-                        <a href="/admin/users/<%= user.id %>/" class="btn pull-right"><i class="icon-pencil"></i></a>
+                        <a href="/admin/users?id=<%= user.id %>/" class="btn pull-right"><i class="icon-pencil"></i></a>
                         <a href="/user/<%= user.username %>" target="_blank" class="btn pull-right"><i class="icon-eye-open"></i></a>
                     </td>
                 </tr>
