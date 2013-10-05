@@ -67,6 +67,7 @@ module.exports.routes = {
   '/user/delete-all': 'UserController.deleteAll',
   '/user/:name': 'UserController.view',
   '/user/:name/delete': 'UserController.delete',
+  '/user/:name/make-admin': 'AdminController.makeAdmin',
 
   // Blog
   '/blog': 'BlogController.index',
