@@ -35,6 +35,7 @@ module.exports.routes = {
   '/':  'HomeController.index',
 
   '/:module': 'ModuleController.index',
+  '/:module/create': 'ModuleController.create',
 
   // Admin Panel
   '/admin':  'AdminController.index',
