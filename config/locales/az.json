@@ -26,7 +26,7 @@
     "users": "İstifadəçilər",
     "settings": "Ayarlar",
     "control_panel": "Nəzarət",
-    "edit": "%s redaktəsi",
+    "edit": "Düzəliş",
     "not_found": "%s tapılmadı!",
     "comments": "Şərhlər",
     "general": "Ümumi",
@@ -47,5 +47,6 @@
     "new_password": "Yeni şifrə",
     "confirm_password": "Təsdiq şifrəsi",
     "all_settings": "Bütün kökləmələr",
-    "count" : "Say"
+    "count" : "Say",
+    "view_site" : "Sayta bax"
 }
