@@ -1,5 +1,4 @@
 //@TODO: find mongoose populate method
-//@TODO: set global local for authenticated users
 
 /**
  * Routes
