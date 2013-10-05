@@ -39,7 +39,8 @@ module.exports.policies = {
 
   AdminController: {
       '*': ['isAuth', 'isAdmin'],
-      'makeAdmin': true //Dev only
+      index: 'isAdmin',
+      makeAdmin: true //Dev only
   },
 
   CommentController: {

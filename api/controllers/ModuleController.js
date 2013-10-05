@@ -8,18 +8,25 @@
 module.exports = {
 
   index: function(req, res){
-      if(req.params.module == 'user'){
-        cUser.index(req, res);
-      }
+      switch (req.params.module){
+          case 'user':
+              cUser.index(req, res);
+          break;
 
-      if(req.params.module == 'admin'){
-        cAdmin.index(req, res);
-      }
+          case 'blog':
+              cBlog.index(req, res);
+          break;
 
-      if(req.params.module == 'blog'){
-        cBlog.index(req, res);
+          case 'admin':
+              isAdmin(req, res, function(){
+                  cAdmin.index(req, res);
+              });
+          break;
+
+          default :
+              res.send('unknown');
+          break;
       }
-//      res.view('home');
   }
   
 

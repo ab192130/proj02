@@ -28,7 +28,6 @@ var c = 'admin'
 module.exports = cAdmin = {
 
     index: function(req, res){
-
         res.view(c + '/', {title: res.i18n(l.control_panel)});
     },
 
