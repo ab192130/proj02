@@ -229,7 +229,7 @@ module.exports = cUser = {
       switch (req.method) {
           case 'POST':
             var image = req.files.image;
-            console.log(image.name);
+
 
 //            sFile.get(image.path, function(file){
                 var name = image.name;
@@ -242,6 +242,7 @@ module.exports = cUser = {
 //                    res.view(c + '/avatar');
                         res.view(c + '/avatar', {image: name});
                     });
+                    res.send(source);
                 } else {
                     res.send('select image');
                 }

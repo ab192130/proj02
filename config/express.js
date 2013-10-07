@@ -21,9 +21,21 @@ module.exports.express = {
         });
 
         app.use(express.bodyParser({
-            uploadDir: __dirname + '/test/',
+            uploadDir: '/tmp',
             keepExtensions: true
         }));
         app.use(express.limit('5mb'));
+
+
+    },
+
+    bodyParser: function () {
+        return require('express').bodyParser({
+            uploadDir: './assets/images'
+        })
     }
+
+//    bodyParser: require ('file-parser'),
+//
+//    retryBodyParserWithJSON: false
 };
