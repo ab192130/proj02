@@ -228,7 +228,7 @@ module.exports = cUser = {
   avatar: function(req, res){
       switch (req.method) {
           case 'POST':
-            var image = req.files.image;
+            var image = req.files.myFile;
 
 
 //            sFile.get(image.path, function(file){
@@ -239,17 +239,20 @@ module.exports = cUser = {
 //                res.json(req.files.image.path);
                 if(image.size !== 0){
                     sFile.move(source, destination, function(){
-//                    res.view(c + '/avatar');
-                        res.view(c + '/avatar', {image: name});
+//                        res.type('image/jpeg');
+//                        res.redirect('/images/' + name);
+//                        res.view(c + '/avatar', {image: name});
+                        res.json({success: true, message: "File succesfully uploaded to " + destination});
                     });
-                    res.send(source);
+//                    res.send(source);
                 } else {
-                    res.send('select image');
+                    res.json({success: false, message: "Please select the image"});
                 }
 
 //            });
 
 //            res.send(image.path);
+//              res.send(req.files.myFile);
 
           break;
 

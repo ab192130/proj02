@@ -17,9 +17,11 @@ exports.create = function(path, data, callback){
 exports.move = function(source, destination, callback){
     fs.rename(source, destination, function(err){
         if (err) throw err;
-        fs.unlink(source, function(err) {
-            if (err) throw err;
-            callback();
-        });
+//        fs.unlink(source, function(err) {
+//            if (err) throw err;
+//            callback();
+//        });
+
+        callback();
     });
 };

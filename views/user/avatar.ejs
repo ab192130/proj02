@@ -6,9 +6,15 @@
         <% } %>
 
         <form method="post" enctype="multipart/form-data">
-            <label for="imageInput">Select image to upload:</label>
-            <p><input id="imageInput" type="file" name="image" class="form-control"/></p>
-            <p><input type="submit" value="Upload" class="btn btn-primary"/></p>
+            <label for="myFile">Select image to upload:</label>
+            <p><input id="myFile" type="file" name="myFile" class="form-control"/></p>
+            <p><input type="submit" id="uploadBtn" value="Upload" class="btn btn-primary"/></p>
         </form>
+
+        <div class="progress" id="progressBar">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                <span class="sr-only">40% Complete (success)</span>
+            </div>
+        </div>
     </div>
 </div>
