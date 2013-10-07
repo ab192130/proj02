@@ -1,15 +1,13 @@
+<div id="message"></div>
+
 <div class="panel panel-default">
     <div class="panel-heading">Upload Image</div>
     <div class="panel-body">
-        <div id="message"></div>
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            asd
-        </div>
+        <div id="image"></div>
 
-        <% if(typeof image !== 'undefined') { %>
-            <img src="/images/<%= image %>" alt="<%- image %>" width="538"/>
-        <% } %>
+        <!--<% if(typeof image !== 'undefined') { %>-->
+            <!--<img src="/images/<%= image %>" alt="<%- image %>" width="538"/>-->
+        <!--<% } %>-->
 
         <form method="post" enctype="multipart/form-data">
             <label for="myFile">Select image to upload:</label>

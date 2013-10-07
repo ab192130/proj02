@@ -242,7 +242,7 @@ module.exports = cUser = {
 //                        res.type('image/jpeg');
 //                        res.redirect('/images/' + name);
 //                        res.view(c + '/avatar', {image: name});
-                        res.json({success: true, message: "File succesfully uploaded to " + destination});
+                        res.json({success: true, message: "File succesfully uploaded to ", link: destination});
                     });
 //                    res.send(source);
                 } else {

@@ -51,13 +51,18 @@ submit.on('click', function(e){
             $('#message').append(alert);
         }
         $('#myFile').fadeIn();
+        var link = JSON.parse(this.responseText);
+        var link = link.link.slice(8);
+        $('#image').html('<img src="'+ link +'" alt="" width=538 />');
         progressBody.fadeOut();
 //        var alert = 'success! <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
 //        $('#message').append(alert);
 
+        console.log(this.responseText);
+
     };
 
-    console.log(xhr);
+
 
     xhr.send(formData);
 });
