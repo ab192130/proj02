@@ -31,7 +31,8 @@ module.exports.express = {
 
     bodyParser: function () {
         return require('express').bodyParser({
-            uploadDir: './assets/images'
+            uploadDir: './assets/images',
+            limit: '1mb'
         })
     }
 
