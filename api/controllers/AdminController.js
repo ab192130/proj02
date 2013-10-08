@@ -222,7 +222,7 @@ module.exports = cAdmin = {
                             cmp = req.body.components.replace(/ /g,''); //remove spaces
                             cmp = cmp.split(','); //make array
 
-                            mdl.name = req.body.name;
+                            mdl.name = req.body.name.toLowerCase();
                             mdl.status = req.body.status;
                             mdl.components = cmp;
                             mdl.save(function(err){
