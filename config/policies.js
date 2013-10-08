@@ -19,33 +19,32 @@ module.exports.policies = {
   '*': true,
 
   UserController: {
-      '*': true,
-      view: true,
-      find: true,
-      me: 'isAuth',
-      edit: 'isAuth',
-      edit_get: 'isAuth',
-      delete: 'isAuth'
+      '*': ['isComponent'],
+      view: ['isComponent'],
+      find: ['isComponent'],
+      me: ['isComponent', 'isAuth'],
+      edit: ['isComponent', 'isAuth'],
+      edit_get: ['isComponent', 'isAuth'],
+      delete: ['isComponent', 'isAuth']
   },
 
   BlogController: {
-      '*': true,
-      add_get: 'isAuth',
-      add: 'isAuth',
-      edit_get: 'isAuth',
-      edit: 'isAuth',
-      delete: 'isAuth'
+      '*': ['isComponent'],
+      add_get: ['isComponent', 'isAuth'],
+      add: ['isComponent', 'isAuth'],
+      edit_get: ['isComponent', 'isAuth'],
+      edit: ['isComponent', 'isAuth'],
+      delete: ['isComponent', 'isAuth']
   },
 
   AdminController: {
-      '*': ['isAuth', 'isAdmin'],
-      index: 'isAdmin',
+      '*': ['isAuth', 'isAdmin', 'isComponent'],
       makeAdmin: true //Dev only
   },
 
   CommentController: {
-      '*': true,
-      add: 'isAuth'
+      '*': ['isComponent'],
+      add: ['isComponent', 'isAuth']
   }
 
 

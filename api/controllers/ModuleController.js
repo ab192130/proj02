@@ -8,30 +8,30 @@
 module.exports = {
 
   index: function(req, res){
-      var name = req.params.module;
-      sData.getOne(Module, {name: name}, function(mdl){
-            if(mdl){
-                var string = mdl.name
-                  , string = string.charAt(0).toUpperCase() + string.slice(1)
-                  , string = 'c' + string
-                  , myobj = eval(string);
-
-//            res.send(myobj);
-                switch (name){
-                    case mdl.name:
-                        myobj.index(req, res);
-                    break;
-
-                    default:
-                        //...
-                    break;
-
-                }
-            } else {
-                res.send('unknown');
-            }
-
-      });
+//      var name = req.params.module;
+//      sData.getOne(Module, {name: name}, function(mdl){
+//            if(mdl){
+//                var string = mdl.name
+//                  , string = string.charAt(0).toUpperCase() + string.slice(1)
+//                  , string = 'c' + string
+//                  , myobj = eval(string);
+//
+////            res.send(myobj);
+//                switch (name){
+//                    case mdl.name:
+//                        myobj.index(req, res);
+//                    break;
+//
+//                    default:
+//                        //...
+//                    break;
+//
+//                }
+//            } else {
+//                res.send('unknown');
+//            }
+//
+//      });
 
 //      switch (req.params.module){
 //          case 'user':
