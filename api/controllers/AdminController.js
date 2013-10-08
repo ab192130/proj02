@@ -194,8 +194,47 @@ module.exports = cAdmin = {
     },
 
     modules: function(req, res){
-        sData.get(Module, {}, function(mdls){
-            res.view(c + '/modules.index.ejs', {title: res.i18n('modules'), modules: mdls});
-        });
+        var mid = req.param('id');
+        var a = req.param('a');
+        switch (req.method){
+            case 'GET':
+                if(mid) {
+                    if ('delete' == a){
+                        res.send('delete');
+                    } else {
+                        sData.getOne(Module, {id: mid}, function(mdl){
+                            console.log(mdl);
+                            res.view(c + '/modules.edit.ejs', {title: res.i18n('modules'), module: mdl});
+//                            res.send(mdl);
+                        });
+                    }
+                } else {
+                    sData.get(Module, {}, function(mdls){
+                        res.view(c + '/modules.index.ejs', {title: res.i18n('modules'), modules: mdls});
+                    });
+                }
+            break;
+
+            case 'POST':
+                if(mid){
+                    sData.getOne(Module, {id: mid}, function(mdl){
+                        if(mdl){
+                            mdl.name = req.body.name;
+                            mdl.status = req.body.status;
+                            mdl.save(function(err){
+                                if(err) throw err;
+                                res.redirect('/admin/modules');
+                            });
+                        } else {
+                            sError.not_found(res, res.i18n('module'));
+                        }
+                    });
+
+                }
+            break;
+
+            default:
+            break;
+        }
     }
 };

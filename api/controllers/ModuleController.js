@@ -58,8 +58,8 @@ module.exports = {
       var name = req.params.module;
       sData.getOne(Module, {name: name}, function(mdl){
         if(!mdl){
-            sData.add(Module, {name: req.params.module, status: 1, policy: 'admin'}, function(mdl){
-                    res.json(mdl);
+            sData.add(Module, {name: req.params.module, status: 1}, function(mdl){
+                res.json(mdl);
             });
         } else {
             res.json({success: false});

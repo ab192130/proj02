@@ -9,11 +9,8 @@
 module.exports = {
 
   attributes: {
-  	
   	name: 'string',
-    status: 'INTEGER',
-    policy: 'string'
-    
+    status: 'INTEGER'
   }
 
 };
