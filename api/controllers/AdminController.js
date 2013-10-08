@@ -200,28 +200,33 @@ module.exports = cAdmin = {
 
         switch (req.method){
             case 'GET':
-                if(mid) {
-                    if ('delete' == a){
-                        res.send('delete');
+                    if(mid && a !== 'add') {
+                        if ('delete' == a){
+                            res.send('delete');
+                        } else {
+                            sData.getOne(Module, {id: mid}, function(mdl){
+                                res.view(c + '/modules.edit.ejs', {title: res.i18n('modules'), module: mdl});
+                            });
+                        }
                     } else {
-                        sData.getOne(Module, {id: mid}, function(mdl){
-                            res.view(c + '/modules.edit.ejs', {title: res.i18n('modules'), module: mdl});
-                        });
+                        if('add' == a){
+                            res.view(c + '/modules.add.ejs', {title: res.i18n('add_module')});
+                        } else {
+                            sData.get(Module, {}, function(mdls){
+                                res.view(c + '/modules.index.ejs', {title: res.i18n('modules'), modules: mdls});
+                            });
+                        }
+
                     }
-                } else {
-                    sData.get(Module, {}, function(mdls){
-                        res.view(c + '/modules.index.ejs', {title: res.i18n('modules'), modules: mdls});
-                    });
-                }
+
                 break;
 
             case 'POST':
-                if(mid){
+                cmp = req.body.components.replace(/ /g,''); //remove spaces
+                cmp = cmp.split(','); //make array
+                if(mid && a !== 'add'){
                     sData.getOne(Module, {id: mid}, function(mdl){
                         if(mdl){
-                            cmp = req.body.components.replace(/ /g,''); //remove spaces
-                            cmp = cmp.split(','); //make array
-
                             mdl.name = req.body.name.toLowerCase();
                             mdl.status = req.body.status;
                             mdl.components = cmp;
@@ -233,7 +238,12 @@ module.exports = cAdmin = {
                             sError.not_found(res, res.i18n('module'));
                         }
                     });
-
+                } else {
+                    if('add' == a){
+                        sData.add(Module, {name: req.body.name, status: req.body.status, components: cmp}, function(mdl){
+                            res.redirect(c + '/modules');
+                        });
+                    }
                 }
                 break;
 

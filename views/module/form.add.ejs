@@ -1,0 +1,33 @@
+<form method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                <label><%= __('name') %>:</label>
+                <input type="text" name="name" value="" placeholder="<%= __('name') %>" class="form-control">
+            </p>
+
+            <p>
+                <label><%= __('status') %>:</label>
+                <input type="text" name="status" value="" placeholder="<%= __('status') %>" class="form-control">
+            </p>
+
+            <p>
+                <label><%= __('components') %>:</label>
+                <input type="text" name="components" value="" placeholder="<%= __('components') %>" class="form-control">
+            </p>
+
+
+        </div>
+
+        <div class="col-md-6">
+            <p>
+                <label><%= __('id') %>:</label>
+                <input type="text" name="id" value="" placeholder="<%= __('id') %>" class="form-control" disabled>
+            </p>
+        </div>
+    </div>
+
+
+    <input type="submit"  class="btn btn-primary" value="<%= __('submit') %>" />
+
+</form>
