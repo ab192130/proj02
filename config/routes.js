@@ -43,6 +43,7 @@ module.exports.routes = {
   '/admin/comments':  'AdminController.comments',
   '/admin/blogs':  'AdminController.blogs',
   '/admin/general':  'AdminController.general',
+  '/admin/modules':  'AdminController.modules',
 
   '/admin/users/:id/delete':  'UserController.delete',
   '/admin/comments/:id/delete':  'CommentController.delete',

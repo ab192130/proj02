@@ -1,0 +1,24 @@
+<table class="table">
+    <tbody>
+    <tr>
+        <td><%= __('name') %></td>
+        <td><%= __('id') %></td>
+        <td><%= __('status') %></td>
+        <td></td>
+    </tr>
+    </tbody>
+    <tbody>
+    <% _.each(modules, function(module) { %>
+    <tr>
+        <td><a href="/admin/users?id=<%= module.id %>"><%= module.name %></a></td>
+        <td><%= module.id %></td>
+        <td><%= module.status %></td>
+        <td>
+            <a href="/admin/modules?id=<%= module.id %>&a=delete" class="btn pull-right"><i class="icon-remove close"></i></a>
+            <a href="/admin/modules?id=<%= module.id %>&a=edit" class="btn pull-right"><i class="icon-pencil"></i></a>
+            <a href="/<%= module.name %>" target="_blank" class="btn pull-right"><i class="icon-eye-open"></i></a>
+        </td>
+    </tr>
+    <% });  %>
+    </tbody>
+</table>

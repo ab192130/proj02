@@ -191,5 +191,11 @@ module.exports = cAdmin = {
             });
 
         })
+    },
+
+    modules: function(req, res){
+        sData.get(Module, {}, function(mdls){
+            res.view(c + '/modules.index.ejs', {title: res.i18n('modules'), modules: mdls});
+        });
     }
 };
