@@ -202,10 +202,12 @@ module.exports = cAdmin = {
             case 'GET':
                     if(mid && a !== 'add') {
                         if ('delete' == a){
-                            res.send('delete');
+                            sData.delete(Module, {id: mid}, function(){
+                                res.redirect(c + '/modules');
+                            });
                         } else {
                             sData.getOne(Module, {id: mid}, function(mdl){
-                                res.view(c + '/modules.edit.ejs', {title: res.i18n('modules'), module: mdl});
+                                res.view(c + '/modules.edit.ejs', {title: res.i18n('edit_module'), module: mdl});
                             });
                         }
                     } else {
