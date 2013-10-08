@@ -38,7 +38,32 @@ module.exports = cBlog = {
     if(user) var uid = user.id;
     var a = req.param('a');
     var bid = req.param('id');
-    var args ={where: {or: [{privacy: 1}, {author: uid}]}};
+    var args = {where: {or: [{privacy: 1}, {author: uid}]}};
+
+    sModule.view(req, Blog, {name: 'blog'}, function(cb){
+        switch (cb){
+            case 'view':
+                console.log('viewing');
+            break;
+
+            case 'edit':
+                console.log('editing');
+            break;
+
+            case 'delete':
+                console.log('deleting');
+            break;
+
+            case 'list':
+                console.log('listing');
+            break;
+
+            default:
+                console.log('other');
+            break;
+        }
+
+    });
 
     if(bid){
         sData.getOne(Blog, {id: bid}, function(blog){
