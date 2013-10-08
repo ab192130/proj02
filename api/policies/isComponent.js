@@ -8,7 +8,6 @@
         sData.getOne(Module, {name: module}, function(mdl){
             if(mdl && mdl.status == 1) {
                 console.log('ok');
-
                 ok();
             } else {
                 sError.not_found(res, 'Page');
