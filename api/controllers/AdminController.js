@@ -196,6 +196,8 @@ module.exports = cAdmin = {
     modules: function(req, res){
         var mid = req.param('id');
         var a = req.param('a');
+        var cmp;
+
         switch (req.method){
             case 'GET':
                 if(mid) {
@@ -217,8 +219,12 @@ module.exports = cAdmin = {
                 if(mid){
                     sData.getOne(Module, {id: mid}, function(mdl){
                         if(mdl){
+                            cmp = req.body.components.replace(/ /g,''); //remove spaces
+                            cmp = cmp.split(','); //make array
+
                             mdl.name = req.body.name;
                             mdl.status = req.body.status;
+                            mdl.components = cmp;
                             mdl.save(function(err){
                                 if(err) throw err;
                                 res.redirect('/admin/modules');

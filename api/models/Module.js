@@ -10,7 +10,8 @@ module.exports = {
 
   attributes: {
   	name: 'string',
-    status: 'INTEGER'
+    status: 'INTEGER',
+    components: 'array'
   }
 
 };
