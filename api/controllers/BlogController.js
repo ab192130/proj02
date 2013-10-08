@@ -182,7 +182,7 @@ module.exports = cBlog = {
           blog.privacy = privacy;
           blog.save(function(err){
               if (err) throw err;
-              res.redirect('/'+ c +'/' + blog.id);
+              res.redirect('/'+ c +'?id=' + blog.id);
           });
       });
   },
