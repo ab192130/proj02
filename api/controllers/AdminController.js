@@ -203,9 +203,7 @@ module.exports = cAdmin = {
                         res.send('delete');
                     } else {
                         sData.getOne(Module, {id: mid}, function(mdl){
-                            console.log(mdl);
                             res.view(c + '/modules.edit.ejs', {title: res.i18n('modules'), module: mdl});
-//                            res.send(mdl);
                         });
                     }
                 } else {
