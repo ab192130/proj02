@@ -7,17 +7,17 @@
 
 var c = 'admin'
 
-  , r = {
+    , r = {
         users: 'users',
         user: 'user',
         signup: 'signup'
     }
 
-  , v = {
+    , v = {
         error: 'error'
     }
 
-  , l = {
+    , l = {
         no_user_found: 'No user found',
         not_found: 'not_found',
         control_panel: 'control_panel',
@@ -55,7 +55,7 @@ module.exports = cAdmin = {
                         }
                     });
                 }
-            break;
+                break;
 
             case 'POST':
                 sData.getOne(User, args, function(user){
@@ -69,11 +69,11 @@ module.exports = cAdmin = {
                         res.redirect('back');
                     });
                 });
-            break;
+                break;
 
             default :
                 res.send('other');
-            break;
+                break;
 
         }
     },
@@ -114,14 +114,14 @@ module.exports = cAdmin = {
                     });
                 }
 
-            break;
+                break;
 
             case 'POST':
                 var f = {
-                        title: req.body.title,
-                        content: req.body.content,
-                        privacy: req.body.privacy
-                    };
+                    title: req.body.title,
+                    content: req.body.content,
+                    privacy: req.body.privacy
+                };
 
                 sData.getOne(Blog, {id: bid}, function(blog){
                     if(f.title && f.content){
@@ -138,11 +138,11 @@ module.exports = cAdmin = {
                     }
 
                 });
-            break;
+                break;
 
             default :
                 res.send('other');
-            break;
+                break;
         }
     },
 
@@ -213,7 +213,7 @@ module.exports = cAdmin = {
                         res.view(c + '/modules.index.ejs', {title: res.i18n('modules'), modules: mdls});
                     });
                 }
-            break;
+                break;
 
             case 'POST':
                 if(mid){
@@ -231,10 +231,10 @@ module.exports = cAdmin = {
                     });
 
                 }
-            break;
+                break;
 
             default:
-            break;
+                break;
         }
     }
 };
