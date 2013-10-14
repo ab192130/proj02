@@ -13,7 +13,12 @@ module.exports.express = {
             }
 
             sSetting.getOne('general', function(setting){
-                res.locals.site = setting;
+                var defolt = {
+                    site_name: 'MySite',
+                    description: 'My simple application',
+                    favicon: ''
+                };
+                res.locals.site = setting || defolt;
                 res.setLocale(setting.language);
             });
 
