@@ -33,6 +33,7 @@ module.exports.routes = {
   // 
   // (This would also work if you had a file at: `/views/home.ejs`)
   '/':  'HomeController.index',
+  '/install':  'HomeController.install',
 
   // Admin Panel
   '/admin':  'AdminController.index',
