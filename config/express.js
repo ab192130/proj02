@@ -16,10 +16,11 @@ module.exports.express = {
                 var defolt = {
                     site_name: 'MySite',
                     description: 'My simple application',
-                    favicon: ''
+                    favicon: '',
+                    language: 'en'
                 };
                 res.locals.site = setting || defolt;
-                res.setLocale(setting.language);
+//                res.setLocale(defolt.language);
             });
 
             next();
